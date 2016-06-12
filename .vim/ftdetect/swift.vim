@@ -1,0 +1,1 @@
+swift-utils-vim/utils/vim/ftdetect/swift.vim
