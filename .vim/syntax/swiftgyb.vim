@@ -1,1 +1,0 @@
-swift-utils-vim/utils/vim/syntax/swiftgyb.vim
