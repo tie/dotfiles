@@ -1,29 +1,36 @@
 function fish_prompt
-	set_color normal
-	printf '%s' (whoami)
-	printf '@'
-	printf '%s' (hostname|cut -d . -f 1)
-	printf ' '
+	set -l suffix '>'
+	set -l color_cwd $fish_color_cwd
 
-	set_color $fish_color_cwd
-	printf '%s' (prompt_pwd)
-	set_color normal
-
-	if test $VIRTUAL_ENV
-		printf '[%s] ' (set_color blue)(basename $VIRTUAL_ENV)(set_color normal)
+	switch $USER
+	case root toor
+		if set -q fish_color_cwd_root
+			set color_cwd $fish_color_cwd_root
+		end
+		set suffix '#'
 	end
 
-	__fish_git_prompt 
+	if not set -q __fish_prompt_hostname
+		set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
+	end
 
-	printf '> '
+	set -l __fish_prompt_pwd (set_color $color_cwd)(prompt_pwd)(set_color normal)
+
+	set_color normal # print basic prompt
+	printf '%s@%s %s' $USER $__fish_prompt_hostname $__fish_prompt_pwd
+	
+	if test $VIRTUAL_ENV # should be a separate function
+		set -l __fish_prompt_virtual_env (set_color blue)(basename $VIRTUAL_ENV)(set_color normal)
+		printf ' {%s}' $__fish_prompt_virtual_env
+	end
+
+	__fish_git_prompt ' (%s)'
+	printf '%s ' $suffix
 end
 
 function fish_right_prompt
-	set --local st $status
+	set -l st $status
 	if math "$st > 0" > /dev/null
-		set_color white
-		printf "[%d] " $st
-		set_color normal
-		printf "%s" (set_color red)"✘"(set_color normal)
+		printf "[%s]" (set_color red)"$st"(set_color normal)
 	end
 end

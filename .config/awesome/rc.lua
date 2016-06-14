@@ -143,10 +143,10 @@ markup = lain.util.markup
 separators = lain.util.separators
 
 -- Textclock
-clockicon = wibox.widget.imagebox(beautiful.widget_clock)
---textclock = awful.widget.textclock(" %a %d %b  %H:%M")
+--clockicon = wibox.widget.imagebox(beautiful.widget_clock)
+--clockwidget = awful.widget.textclock(" %a %d %b  %H:%M")
 
-textclock = lain.widgets.abase({
+clockwidget = lain.widgets.abase({
     timeout  = 60,
     cmd      = "date +'%a %d %b %R'",
     settings = function()
@@ -155,7 +155,7 @@ textclock = lain.widgets.abase({
 })
 
 -- Calendar
-lain.widgets.calendar:attach(textclock, { font_size = 10 })
+lain.widgets.calendar:attach(clockwidget, { font_size = 10 })
 
 -- Weather
 local read_pipe = require("lain.helpers").read_pipe
@@ -212,6 +212,7 @@ Cloudliness: %d%%
         widget:set_text(" " .. temp .. "°C ")
     end
 })
+
 -- Net
 neticon = wibox.widget.imagebox(beautiful.widget_net)
 neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
@@ -420,7 +421,7 @@ for s = 1, screen.count() do
     right_layout_add(baticon,      batwidget)
     right_layout_add(neticon,      netwidget)
     right_layout_add(weather.icon, weather)
-    right_layout_add(textclock,    spr)
+    right_layout_add(clockwidget,  spr)
     right_layout_add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
