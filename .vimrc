@@ -24,29 +24,39 @@ set tabstop=4 shiftwidth=4
 " ==> Keyboard and shortcuts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable/disable line numbers.
-nmap <Leader>l :set invnumber<CR>
+nnoremap <Leader>l :set invnumber<CR>
+" Toggle NERDTree
+nnoremap <Leader>n :NERDTreeTabsToggle<CR>
+" Toggle Gudno (undo manager)
+nnoremap <Leader>u :GundoToggle<CR>
 
-" Move between windows
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
-
-" Move between tabs
-nmap <S-Tab> :tabn<CR>
-nmap <A-Tab> :tabp<CR>
+"""""""""""""""""""""""""""""""
+" Tabs and windows navigation "
+"""""""""""""""""""""""""""""""
+" Create and close tabs
+nnoremap <A-t> :tabnew<CR>
+nnoremap <A-w> :tabclose<CR>
 
 " Relocate current tab
-nmap <S-A-h> :tabm -1<CR>
-nmap <S-A-j> :tabm +1<CR>
-nmap <S-A-k> :tabm -1<CR>
-nmap <S-A-l> :tabm +1<CR>
+nnoremap <S-A-h> :tabm -1<CR>
+nnoremap <S-A-j> :tabm +1<CR>
+nnoremap <S-A-k> :tabm -1<CR>
+nnoremap <S-A-l> :tabm +1<CR>
 
-" Toggle NERDTree
-nmap <Leader>n :NERDTreeTabsToggle<CR>
+" Move between tabs
+nnoremap <S-Tab>   gt
+nnoremap <C-S-Tab> gT
 
-" Toggle Gudno (undo manager)
-nmap <Leader>u :GundoToggle<CR>
+nnoremap <A-Up>    :tabnext<CR>
+nnoremap <A-Down>  :tabprev<CR>
+nnoremap <A-Left>  :tabprev<CR>
+nnoremap <A-Right> :tabnext<CR>
+
+" Move between windows
+nnoremap <C-Down>   <C-W>h
+nnoremap <C-Left>   <C-W>j
+nnoremap <C-Up>     <C-W>k
+nnoremap <C-Right>  <C-W>l
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Behavior
