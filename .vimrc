@@ -51,14 +51,17 @@ nnoremap <S-A-l> :tabm +1<CR>
 nnoremap <S-Tab>   gt
 nnoremap <C-S-Tab> gT
 
-nnoremap <A-Up>    :tabnext<CR>
-nnoremap <A-Down>  :tabprev<CR>
 nnoremap <A-Left>  :tabprev<CR>
 nnoremap <A-Right> :tabnext<CR>
 
 " Move between windows
-nnoremap <C-Down>   <C-W>h
-nnoremap <C-Left>   <C-W>j
+nnoremap <C-h> <C-W>h
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-l> <C-W>l
+
+nnoremap <C-Left>   <C-W>h
+nnoremap <C-Down>   <C-W>j
 nnoremap <C-Up>     <C-W>k
 nnoremap <C-Right>  <C-W>l
 
