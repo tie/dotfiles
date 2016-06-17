@@ -1,4 +1,4 @@
--- [[[
+--[[
 
 	Theme: Solarized
 	Author: b1narykid
@@ -6,7 +6,7 @@
 	Colorscheme: Solarized by Ethan Schoonover
 	             http://ethanschoonover.com/solarized
 
--- ]]]
+--]]
 
 theme                               = {}
 
