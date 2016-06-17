@@ -1,10 +1,15 @@
 --[[
 
-    Based on Powerarrow Darker theme
-    from github.com/copycat-killer
+	Theme: Solarized
+	Author: b1narykid
+
+	Colorscheme: Solarized by Ethan Schoonover
+	             http://ethanschoonover.com/solarized
+
+	Based on Powerarrow Darker theme
+	by github.com/copycat-killer
 
 --]]
-
 
 -- {{{ Required libraries
 local gears     = require("gears")
@@ -36,7 +41,8 @@ do
         if in_error then return end
         in_error = true
 
-        naughty.notify({ preset = naughty.config.presets.critical,
+        naughty.notify({ bg = beautiful.S_yellow,
+                         preset = naughty.config.presets.critical,
                          title = "Oops, an error happened!",
                          text = err })
         in_error = false
@@ -46,17 +52,17 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/force/theme.lua")
+beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/solarized/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "uxterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
+screenshot = terminal .. " -e " .. "'archey3 -s'"
 
 browser    = "chrome"
 gui_editor = "gvim"
 graphics   = "meh"
-
 
 -- Common keys.
 altkey = "Mod1"
@@ -78,8 +84,7 @@ vol_raise_key = "XF86AudioRaiseVolume"  -- F12
 dsk_eject_key = "XF86Eject"             -- Eject
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-local layouts =
-{
+local layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
@@ -108,34 +113,21 @@ end
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+    tags[s] = awful.tag(
+        {"1", "2", "3", "4", "5", "6", "7", "8", "9" },
+        s, layouts[2])
 end
 -- }}}
 
 -- {{{ Menu
--- Create a laucher widget and a main menu
--- myawesomemenu = {
---    { "manual", terminal .. " -e man awesome" },
---    { "edit config", editor_cmd .. " " .. awesome.conffile },
---    { "restart", awesome.restart },
---    { "quit", awesome.quit }
--- }
-
--- mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
---                                  { "open terminal", terminal }
---                                }
---                         })
-
-mymainmenu = awful.menu.new({
+mainmenu = awful.menu.new({
     items = require("menugen").build_menu(),
     theme = { height = 16, width = 130 }
 })
 
--- mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
---                                      menu = mymainmenu })
-
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+-- Set the terminal for applications that require it
+menubar.utils.terminal = terminal
 -- }}}
 
 -- {{{ Wibox
@@ -143,9 +135,6 @@ markup = lain.util.markup
 separators = lain.util.separators
 
 -- Textclock
---clockicon = wibox.widget.imagebox(beautiful.widget_clock)
---clockwidget = awful.widget.textclock(" %a %d %b  %H:%M")
-
 clockwidget = lain.widgets.abase({
     timeout  = 60,
     cmd      = "date +'%a %d %b %R'",
@@ -169,7 +158,7 @@ weather = lain.widgets.weather({
                                                         wn["dt"])), "\n", "")
 
         -- weather condition
-        local desc = wn["weather"][1]["description"]
+        local description = wn["weather"][1]["description"]
 
         -- temperatures, units are defined above
         local tmin = math.floor(wn["temp"]["min"])   -- min daily
@@ -180,21 +169,21 @@ weather = lain.widgets.weather({
         local tnig = math.floor(wn["temp"]["night"]) -- night
 
         -- pressure, hPa
-        local pres = math.floor(wn["pressure"])
+        local pressure = math.floor(wn["pressure"])
 
         -- humidity, %
-        local humi = math.floor(wn["humidity"])
+        local humidity = math.floor(wn["humidity"])
 
         -- wind speed, miles/hour if units are imperial, meter/sec otherwise
-        local wspe = math.floor(wn["speed"])
+        local wspeed = math.floor(wn["speed"])
 
         -- wind degrees, meteorological degrees
         local wdeg = math.floor(wn["deg"])
 
         -- cloudliness, %
-        local clou = math.floor(wn["clouds"])
+        local clouds = math.floor(wn["clouds"])
 
-        return string.format([[
+        local fmt = [[
 <b>%s</b>: %s
 Temperature (min): %d°C
 Temperature (max): %d°C
@@ -202,10 +191,11 @@ Pressure: %d hPa
 Humidity: %d%%
 Wind: %d m/s at %d°
 Cloudliness: %d%%
-]], day, desc, tmin, tmax, pres, humi, wspe, wdeg, clou)
+]]
 
-        -- format infos as you like, HTML text markup is allowed
-        --return string.format("<br><b>%s</b>: %s<br>temperatures: min %d - max %d °F<br>pressure: %d hPa<br>humidity: %d%%<br>wind: %d miles/hour at %d°<br>cloudliness: %d%%<br>", day, desc, tmin, tmax, pres, humi, wspe, wdeg, clou)
+        return string.format(fmt,
+		                     day, description, tmin, tmax, pressure,
+                             humidity, wspeed, wdeg, clouds)
     end,
     settings = function()
         temp = math.floor(weather_now["main"]["temp"])
@@ -218,9 +208,9 @@ neticon = wibox.widget.imagebox(beautiful.widget_net)
 neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
 netwidget = lain.widgets.net({
     settings = function()
-        widget:set_markup(markup("#7AC82E", " " .. net_now.received)
+        widget:set_markup(markup(beautiful.S_green, " " .. net_now.received)
                           .. " " ..
-                          markup("#46A8C3", " " .. net_now.sent .. " "))
+                          markup(beautiful.S_blue, " " .. net_now.sent .. " "))
     end
 })
 
@@ -285,23 +275,8 @@ volumewidget = lain.widgets.alsa({
     end
 })
 
--- Switch between mac-us and ru layouts.
--- mykbdlayout = lain.widgets.contrib.kbdlayout({
---                   layouts = {{ layout="us", variant="mac" },
---                              { layout="ru" }},
---                   settings = function ()
---                       --if kbdlayout_now.variant then
---                           --widget:set_text(" " .. kbdlayout_now.layout .. "/" .. kbdlayout_now.variant .. " ")
---                       --else
---                           widget:set_text(" " .. kbdlayout_now.layout .. " ")
---                       --end
---                   end
--- })
-
 -- Separators
 spr = wibox.widget.textbox(' ')
-arrl = wibox.widget.imagebox()
-arrl:set_image(beautiful.arrl)
 arrl_dl = separators.arrow_left(beautiful.bg_focus, "alpha")
 arrl_ld = separators.arrow_left("alpha", beautiful.bg_focus)
 
@@ -309,10 +284,10 @@ arrl_ld = separators.arrow_left("alpha", beautiful.bg_focus)
 -- Create a wibox for each screen and add it
 mywibox = {}
 -- bottom_wibox = {}
-mypromptbox = {}
-mylayoutbox = {}
-mytaglist = {}
-mytaglist.buttons = awful.util.table.join(
+promptbox = {}
+layoutbox = {}
+taglist = {}
+taglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, awful.tag.viewonly),
                     awful.button({ modkey }, 1, awful.client.movetotag),
                     awful.button({ }, 3, awful.tag.viewtoggle),
@@ -320,8 +295,8 @@ mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
                     awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
                     )
-mytasklist = {}
-mytasklist.buttons = awful.util.table.join(
+tasklist = {}
+tasklist.buttons = awful.util.table.join(
                      awful.button({ }, 1, function (c)
                                               if c == client.focus then
                                                   c.minimized = true
@@ -359,37 +334,28 @@ mytasklist.buttons = awful.util.table.join(
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
-    mypromptbox[s] = awful.widget.prompt()
+    promptbox[s] = awful.widget.prompt()
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
-    mylayoutbox[s] = awful.widget.layoutbox(s)
-    mylayoutbox[s]:buttons(awful.util.table.join(
+    layoutbox[s] = awful.widget.layoutbox(s)
+    layoutbox[s]:buttons(awful.util.table.join(
                            awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
                            awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
     -- Create a taglist widget
-    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
+    taglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist.buttons)
 
     -- Create a tasklist widget
-    mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
+    tasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist.buttons)
 
     -- Create the wibox
-    mywibox[s]      = awful.wibox({ position = "top", screen = s, height = 18 })
---    bottom_wibox[s] = awful.wibox({ position = "bottom", screen = s, height = 18 })
+    mywibox[s] = awful.wibox({ position = "top", screen = s, height = 18 })
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
-    -- left_layout:add(mylauncher)
-    -- left_layout:add(spr)
-    left_layout:add(mytaglist[s])
-    left_layout:add(mypromptbox[s])
-    -- left_layout:add(spr)
-
---    local bottom_left_layout = wibox.layout.fixed.horizontal()
---    bottom_left_layout:add(spr)
---    bottom_left_layout:add(mylauncher)
---    bottom_left_layout:add(spr)
+    left_layout:add(taglist[s])
+    left_layout:add(promptbox[s])
 
     -- Widgets that are aligned to the right
     local right_layout_toggle = true
@@ -412,8 +378,6 @@ for s = 1, screen.count() do
     right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(spr)
-    right_layout:add(arrl)
-    -- right_layout_add(mykbdlayout)
     right_layout_add(volicon,      volumewidget)
     right_layout_add(memicon,      memwidget)
     right_layout_add(cpuicon,      cpuwidget)
@@ -422,25 +386,21 @@ for s = 1, screen.count() do
     right_layout_add(neticon,      netwidget)
     right_layout_add(weather.icon, weather)
     right_layout_add(clockwidget,  spr)
-    right_layout_add(mylayoutbox[s])
+    right_layout_add(layoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
     layout:set_left(left_layout)
-    layout:set_middle(mytasklist[s])
+    layout:set_middle(tasklist[s])
     layout:set_right(right_layout)
 
---    local bottom_layout = wibox.layout.align.horizontal()
---    bottom_layout:set_middle(mytasklist[s])
-
     mywibox[s]:set_widget(layout)
---    bottom_wibox[s]:set_widget(bottom_layout)
 end
 -- }}}
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    awful.button({ }, 3, function () mainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -449,7 +409,7 @@ root.buttons(awful.util.table.join(
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
     -- Take a screenshot.
-    -- awful.key({ altkey }, missn_ctl_key, function() os.execute("xterm -e archey3 -s") end),
+    awful.key({ altkey }, missn_ctl_key, function() awful.util.spawn(screenshot) end),
 
     -- Tag browsing.
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
@@ -501,8 +461,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "`",      function () awful.layout.inc(layouts, -1) end),
 
     -- Kbd layout
-    -- awful.key({ modkey,           }, spacekey, function () mykbdlayout.next() end),
-    -- awful.key({ modkey, "Shift"   }, spacekey, function () mykbdlayout.prev() end),
+    -- awful.key({ modkey,           }, spacekey, function () kbdlayout.next() end),
+    -- awful.key({ modkey, "Shift"   }, spacekey, function () kbdlayout.prev() end),
 
     -- ALSA volume control
     awful.key({    }, vol_raise_key, -- Raise volume
@@ -554,17 +514,17 @@ globalkeys = awful.util.table.join(
     end),
 
     -- Show menu
-    awful.key({ modkey }, "w", function () mymainmenu:show() end),
+    awful.key({ modkey }, "w", function () mainmenu:show() end),
 
     -- Prompt
-    awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
+    awful.key({ modkey }, "r", function () promptbox[mouse.screen]:run() end),
 
     -- Dropdown terminal
     awful.key({ modkey }, "z", function () drop(terminal) end),
 
     awful.key({ modkey }, "x", function ()
         awful.prompt.run({ prompt = "Run Lua code: " },
-        mypromptbox[mouse.screen].widget,
+        promptbox[mouse.screen].widget,
         awful.util.eval, nil,
         awful.util.getdir("cache") .. "/history_eval")
     end),
@@ -658,12 +618,14 @@ awful.rules.rules = {
                      raise = true,
                      keys = clientkeys,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
+    { rule = { name = "xterm" }, 
+      properties = { size_hints_honor = false } },
+    -- { rule = { class = "MPlayer" },
+    --   properties = { floating = true } },
+    -- { rule = { class = "pinentry" },
+    --   properties = { floating = true } },
+    -- { rule = { class = "gimp" },
+    --   properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
@@ -739,6 +701,14 @@ client.connect_signal("manage", function (c, startup)
     end
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+-- No border for maximized clients
+client.connect_signal("focus", 
+    function(client)
+        if client.maximized_horizontal == true and client.maximized_vertical == true then
+            client.border_color = beautiful.border_normal
+        else
+            client.border_color = beautiful.border_focus
+        end
+    end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}

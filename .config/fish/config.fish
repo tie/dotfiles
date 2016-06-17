@@ -1,3 +1,8 @@
+#################################################################################################
+## https://wiki.archlinux.org/index.php/Fish#.2Fetc.2Fprofile_and_.7E.2F.profile_compatibility ##
+#################################################################################################
+env -i HOME=$HOME dash -l -c 'export -p' | sed -e "/PWD/d; /PATH/s/'//g;/PATH/s/:/ /g;s/=/ /;s/^export/set -x/" | source
+
 #####################
 ## Fish git prompt ##
 #####################

@@ -1,42 +1,75 @@
+-- [[[
 
---[[
+	Theme: Solarized
+	Author: b1narykid
 
-     Powerarrow Darker Awesome WM config 2.0
-     github.com/copycat-killer
+	Colorscheme: Solarized by Ethan Schoonover
+	             http://ethanschoonover.com/solarized
 
---]]
+-- ]]]
 
 theme                               = {}
 
-themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/force"
-theme.wallpaper                     = themes_dir .. "/wall/sith.png"
-
+themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/solarized"
+theme.wallpaper                     = themes_dir .. "/wall/solarized.png"
 theme.font                          = "DejaVu 9"
-theme.fg_normal                     = "#DDDDFF"
-theme.fg_focus                      = "#F0DFAF"
-theme.fg_urgent                     = "#CC9393"
-theme.bg_normal                     = "#1A1A1A"
-theme.bg_focus                      = "#313131"
-theme.bg_urgent                     = "#1A1A1A"
-theme.border_width                  = "1"
-theme.border_normal                 = "#3F3F3F"
-theme.border_focus                  = "#7F7F7F"
+-----------------------------------------------
+-- Solarized colors ---------------------------
+-----------------------------------------------
+--theme.darkgray                      = "#002b36"
+--theme.gray                          = "#657b83"
+theme.S_base03                      = "#002b36"
+theme.S_base02                      = "#073642"
+theme.S_base01                      = "#586e75"
+theme.S_base00                      = "#657b83"
+theme.S_base0                       = "#839496"
+theme.S_base1                       = "#93a1a1"
+theme.S_base2                       = "#eee8d5"
+theme.S_base3                       = "#fdf6e3"
+theme.S_yellow                      = "#b58900"
+theme.S_orange                      = "#cb4b16"
+theme.S_red                         = "#dc322f"
+theme.S_magenta                     = "#d33682"
+theme.S_violet                      = "#6c71c4"
+theme.S_blue                        = "#268bd2"
+theme.S_cyan                        = "#2aa198"
+theme.S_green                       = "#859900"
+-----------------------------------------------
+theme.fg_normal                     = theme.S_base01
+theme.fg_focus                      = theme.S_base1
+--theme.fg_urgent                     = "#CC9393"
+theme.bg_normal                     = theme.S_base03 -- "#00000000"
+theme.bg_focus                      = theme.S_base02
+--theme.bg_urgent                     = "#1A1A1A"
+
+theme.border_width                  = 1
+theme.border_normal                 = theme.S_base02
+theme.border_focus                  = theme.S_base1
 theme.border_marked                 = "#CC9393"
-theme.titlebar_bg_focus             = "#FFFFFF"
-theme.titlebar_bg_normal            = "#FFFFFF"
-theme.taglist_fg_focus              = "#D8D782"
-theme.tasklist_bg_focus             = "#1A1A1A"
-theme.tasklist_fg_focus             = "#D8D782"
-theme.textbox_widget_margin_top     = 1
+
+--theme.titlebar_bg_focus             = "#FFFFFF"
+--theme.titlebar_bg_normal            = "#FFFFFF"
+
+--theme.taglist_fg_focus              = theme.S_base1
+--theme.taglist_bg_focus              = "#0f0f0f99"
+--theme.taglist_bg_normal             = theme.base03
+
+theme.tasklist_bg_focus             = "FFFFFF00" -- theme.bg_normal
+--theme.tasklist_fg_focus             = theme.S_base1
+--theme.tasklist_fg_normal            = theme.fg_normal
+
+--theme.textbox_widget_margin_top     = 0
 theme.notify_fg                     = theme.fg_normal
 theme.notify_bg                     = theme.bg_normal
 theme.notify_border                 = theme.border_focus
-theme.awful_widget_height           = 14
-theme.awful_widget_margin_top       = 2
-theme.mouse_finder_color            = "#CC9393"
-theme.menu_height                   = "16"
-theme.menu_width                    = "140"
-
+--theme.awful_widget_height           = 14
+--theme.awful_widget_margin_top       = 2
+--theme.mouse_finder_color            = "#CC9393"
+--theme.menu_height                   = "16"
+--theme.menu_width                    = "140"
+----------------------------------------------
+-- Icons -------------------------------------
+----------------------------------------------
 theme.awesome_icon                  = themes_dir .."/icons/awesome16.png"
 
 theme.submenu_icon                  = themes_dir .. "/icons/submenu.png"
@@ -57,7 +90,6 @@ theme.layout_fullscreen             = themes_dir .. "/icons/fullscreen.png"
 theme.layout_magnifier              = themes_dir .. "/icons/magnifier.png"
 theme.layout_floating               = themes_dir .. "/icons/floating.png"
 
-theme.arrl                          = themes_dir .. "/icons/arrl.png"
 theme.arrl_dl                       = themes_dir .. "/icons/arrl_dl.png"
 theme.arrl_ld                       = themes_dir .. "/icons/arrl_ld.png"
 

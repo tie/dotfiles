@@ -12,10 +12,14 @@ filetype on
 
 " Set theme
 if has("gui_running")
-	colorscheme wwdc16
+	colorscheme solarized
 else
 	colorscheme solarized
 endif
+
+" 80 columns, please.
+set textwidth=80
+set colorcolumn=+1
 
 " Set default tab size to 4 spaces.
 set tabstop=4 shiftwidth=4
