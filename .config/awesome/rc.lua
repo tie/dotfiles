@@ -113,16 +113,14 @@ end
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag(
-        {"1", "2", "3", "4", "5", "6", "7", "8", "9" },
-        s, layouts[2])
+    tags[s] = awful.tag({"dev", "web", "git", "etc" }, s, layouts[2])
 end
 -- }}}
 
 -- {{{ Menu
 mainmenu = awful.menu.new({
     items = require("menugen").build_menu(),
-    theme = { height = 16, width = 130 }
+    theme = { height = theme.menu_height, width = theme.menu_width }
 })
 
 -- Menubar configuration
@@ -144,7 +142,10 @@ clockwidget = lain.widgets.abase({
 })
 
 -- Calendar
-lain.widgets.calendar:attach(clockwidget, { font_size = 10 })
+lain.widgets.calendar:attach(clockwidget, { 
+    font = beautiful.monoFontName, 
+    font_size = beautiful.fontSize 
+})
 
 -- Weather
 local read_pipe = require("lain.helpers").read_pipe
@@ -194,8 +195,9 @@ Cloudliness: %d%%
 ]]
 
         return string.format(fmt,
-		                     day, description, tmin, tmax, pressure,
-                             humidity, wspeed, wdeg, clouds)
+		    day, description, tmin, tmax, pressure,
+            humidity, wspeed, wdeg, clouds
+        )
     end,
     settings = function()
         temp = math.floor(weather_now["main"]["temp"])
@@ -208,9 +210,11 @@ neticon = wibox.widget.imagebox(beautiful.widget_net)
 neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
 netwidget = lain.widgets.net({
     settings = function()
-        widget:set_markup(markup(beautiful.S_green, " " .. net_now.received)
-                          .. " " ..
-                          markup(beautiful.S_blue, " " .. net_now.sent .. " "))
+        widget:set_markup(
+            markup(beautiful.S_green, " " .. net_now.received) 
+            .. " " ..
+            markup(beautiful.S_blue, " " .. net_now.sent .. " ")
+        )
     end
 })
 
@@ -294,43 +298,46 @@ taglist.buttons = awful.util.table.join(
                     awful.button({ modkey }, 3, awful.client.toggletag),
                     awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
                     awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
-                    )
+)
+
 tasklist = {}
 tasklist.buttons = awful.util.table.join(
-                     awful.button({ }, 1, function (c)
-                                              if c == client.focus then
-                                                  c.minimized = true
-                                              else
-                                                  -- Without this, the following
-                                                  -- :isvisible() makes no sense
-                                                  c.minimized = false
-                                                  if not c:isvisible() then
-                                                      awful.tag.viewonly(c:tags()[1])
-                                                  end
-                                                  -- This will also un-minimize
-                                                  -- the client, if needed
-                                                  client.focus = c
-                                                  c:raise()
-                                              end
-                                          end),
-                     awful.button({ }, 3, function ()
-                                              if instance then
-                                                  instance:hide()
-                                                  instance = nil
-                                              else
-                                                  instance = awful.menu.clients({
-                                                      theme = { width = 250 }
-                                                  })
-                                              end
-                                          end),
-                     awful.button({ }, 4, function ()
-                                              awful.client.focus.byidx(1)
-                                              if client.focus then client.focus:raise() end
-                                          end),
-                     awful.button({ }, 5, function ()
-                                              awful.client.focus.byidx(-1)
-                                              if client.focus then client.focus:raise() end
-                                          end))
+    awful.button({ }, 1, function (c)
+        if c == client.focus then
+            c.minimized = true
+        else
+            -- Without this, the following
+            -- :isvisible() makes no sense
+            c.minimized = false
+            if not c:isvisible() then
+                awful.tag.viewonly(c:tags()[1])
+            end
+            -- This will also un-minimize
+            -- the client, if needed
+            client.focus = c
+            c:raise()
+        end
+    end),
+
+    awful.button({ }, 3, function ()
+        if instance then
+            instance:hide()
+            instance = nil
+        else
+            instance = awful.menu.clients({
+                theme = { width = 250 }
+            })
+        end
+    end),
+    awful.button({ }, 4, function ()
+        awful.client.focus.byidx(1)
+        if client.focus then client.focus:raise() end
+    end),
+
+    awful.button({ }, 5, function ()
+        awful.client.focus.byidx(-1)
+        if client.focus then client.focus:raise() end
+    end))
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
@@ -338,19 +345,28 @@ for s = 1, screen.count() do
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     layoutbox[s] = awful.widget.layoutbox(s)
-    layoutbox[s]:buttons(awful.util.table.join(
-                           awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
-                           awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
-                           awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
+    layoutbox[s]:buttons(
+        awful.util.table.join(
+            awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
+            awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
+            awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
+            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)
+        )
+    )
     -- Create a taglist widget
-    taglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist.buttons)
+    taglist[s] = awful.widget.taglist(
+        s, 
+        awful.widget.taglist.filter.all, 
+        taglist.buttons)
 
     -- Create a tasklist widget
-    tasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist.buttons)
+    tasklist[s] = awful.widget.tasklist(
+        s,
+        awful.widget.tasklist.filter.currenttags, 
+        tasklist.buttons)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s, height = 18 })
+    mywibox[s] = awful.wibox({ position = "top", screen = s, height = 36 })
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
@@ -386,6 +402,7 @@ for s = 1, screen.count() do
     right_layout_add(neticon,      netwidget)
     right_layout_add(weather.icon, weather)
     right_layout_add(clockwidget,  spr)
+
     right_layout_add(layoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
@@ -489,23 +506,23 @@ globalkeys = awful.util.table.join(
     -- Ligth control
     awful.key({  }, bkl_lower_key, -- Decrease light
         function ()
-            os.execute("light -U 10")
+            os.execute("light -U 1")
         end),
 
     awful.key({  }, bkl_raise_key, -- Increase light
         function ()
-            os.execute("light -A 10")
+            os.execute("light -A 1")
         end),
 
 
     -- Kbd light
     awful.key({  }, kbl_lower_key, -- Decrease keyboard backlight
         function ()
-            os.execute("kbdlight down 10")
+            os.execute("kbdlight down 1")
         end),
     awful.key({  }, kbl_raise_key, -- Increase keyboard backlight
         function ()
-            os.execute("kbdlight up 10")
+            os.execute("kbdlight up 1")
         end),
 
     -- Show/Hide Wibox
@@ -560,42 +577,42 @@ for i = 1, 9 do
     globalkeys = awful.util.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
-                  function ()
-                        local screen = mouse.screen
-                        local tag = awful.tag.gettags(screen)[i]
-                        if tag then
-                           awful.tag.viewonly(tag)
-                        end
-                  end),
+            function ()
+                local screen = mouse.screen
+                local tag = awful.tag.gettags(screen)[i]
+                if tag then
+                    awful.tag.viewonly(tag)
+                end
+            end),
         -- Toggle tag.
         awful.key({ modkey, "Control" }, "#" .. i + 9,
-                  function ()
-                      local screen = mouse.screen
-                      local tag = awful.tag.gettags(screen)[i]
-                      if tag then
-                         awful.tag.viewtoggle(tag)
-                      end
-                  end),
+            function ()
+                local screen = mouse.screen
+                local tag = awful.tag.gettags(screen)[i]
+                if tag then
+                    awful.tag.viewtoggle(tag)
+                end
+            end),
         -- Move client to tag.
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
-                  function ()
-                      if client.focus then
-                          local tag = awful.tag.gettags(client.focus.screen)[i]
-                          if tag then
-                              awful.client.movetotag(tag)
-                          end
-                     end
-                  end),
+            function ()
+                if client.focus then
+                    local tag = awful.tag.gettags(client.focus.screen)[i]
+                    if tag then
+                        awful.client.movetotag(tag)
+                    end
+                end
+            end),
         -- Toggle tag.
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
-                  function ()
-                      if client.focus then
-                          local tag = awful.tag.gettags(client.focus.screen)[i]
-                          if tag then
-                              awful.client.toggletag(tag)
-                          end
+              function ()
+                  if client.focus then
+                      local tag = awful.tag.gettags(client.focus.screen)[i]
+                      if tag then
+                          awful.client.toggletag(tag)
                       end
-                  end))
+                  end
+              end))
 end
 
 clientbuttons = awful.util.table.join(
@@ -669,7 +686,7 @@ client.connect_signal("manage", function (c, startup)
                     c:raise()
                     awful.mouse.client.resize(c)
                 end)
-                )
+        )
 
         -- Widgets that are aligned to the left
         local left_layout = wibox.layout.fixed.horizontal()
@@ -712,3 +729,5 @@ client.connect_signal("focus",
     end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- vim: ft=lua ts=4 et:

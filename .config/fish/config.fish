@@ -27,3 +27,9 @@ set __fish_git_prompt_char_dirtystate '*'
 set __fish_git_prompt_char_stagedstate '→'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
+
+###################
+## Fish vim mode ##
+###################
+#fish_vi_key_bindings default
+

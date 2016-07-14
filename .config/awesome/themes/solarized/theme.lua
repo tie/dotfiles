@@ -12,10 +12,14 @@ theme                               = {}
 
 themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/solarized"
 theme.wallpaper                     = themes_dir .. "/wall/solarized.png"
-theme.font                          = "DejaVu 9"
------------------------------------------------
--- Solarized colors ---------------------------
------------------------------------------------
+
+theme.fontName                      = "DejaVu"
+theme.monoFontName                  = "DejaVu Sans Mono"
+theme.fontSize                      = 18
+theme.font                          = theme.fontName .. " " .. theme.fontSize
+--------------------------------------------------------------------------------
+-- Solarized colors ------------------------------------------------------------
+--------------------------------------------------------------------------------
 --theme.darkgray                      = "#002b36"
 --theme.gray                          = "#657b83"
 theme.S_base03                      = "#002b36"
@@ -34,7 +38,7 @@ theme.S_violet                      = "#6c71c4"
 theme.S_blue                        = "#268bd2"
 theme.S_cyan                        = "#2aa198"
 theme.S_green                       = "#859900"
------------------------------------------------
+--------------------------------------------------------------------------------
 theme.fg_normal                     = theme.S_base01
 theme.fg_focus                      = theme.S_base1
 --theme.fg_urgent                     = "#CC9393"
@@ -65,11 +69,11 @@ theme.notify_border                 = theme.border_focus
 --theme.awful_widget_height           = 14
 --theme.awful_widget_margin_top       = 2
 --theme.mouse_finder_color            = "#CC9393"
---theme.menu_height                   = "16"
---theme.menu_width                    = "140"
-----------------------------------------------
--- Icons -------------------------------------
-----------------------------------------------
+theme.menu_height                   = 32
+theme.menu_width                    = 280
+--------------------------------------------------------------------------------
+-- Icons -----------------------------------------------------------------------
+--------------------------------------------------------------------------------
 theme.awesome_icon                  = themes_dir .."/icons/awesome16.png"
 
 theme.submenu_icon                  = themes_dir .. "/icons/submenu.png"
@@ -117,3 +121,6 @@ theme.tasklist_maximized_horizontal = ""
 theme.tasklist_maximized_vertical   = ""
 
 return theme
+
+-- vim: ft=lua ts=4 et
+

@@ -34,3 +34,6 @@ function fish_right_prompt
 		printf "[%s]" (set_color red)"$st"(set_color normal)
 	end
 end
+
+# vim: ts=4
+
