@@ -13,3 +13,6 @@
 [submodule "submodules/capitaine-cursors"]
 	path = submodules/resources/capitaine-cursors
 	url = git://github.com/keeferrourke/capitaine-cursors.git
+[submodule "submodules/vim-bundle/vim-colors-solarized"]
+	path = submodules/vim-bundle/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
