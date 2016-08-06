@@ -85,8 +85,8 @@ Xft.dpi: 200
 ! ------------------------------------------------------------------------------
 
 !Xcursor.theme: OSX-ElCap
-Xcursor.theme: redglass
-Xcursor.size: 32
+Xcursor.theme: capitaine-cursors
+Xcursor.size: 38
 
 ! ------------------------------------------------------------------------------
 ! --- end of cursor theme section ----------------------------------------------

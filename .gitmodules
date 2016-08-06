@@ -10,3 +10,6 @@
 [submodule ".vim/bundle/swift.vim"]
 	path = .vim/bundle/swift.vim
 	url = git://github.com/keith/swift.vim.git
+[submodule "capitaine-cursors"]
+	path = capitaine-cursors
+	url = git://github.com/keeferrourke/capitaine-cursors.git
