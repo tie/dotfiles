@@ -17,7 +17,6 @@
 #define S_cyan          #2aa198
 #define S_green         #859900
 
-
 ! Dark
 
 #define S_base03        #002b36
@@ -28,7 +27,6 @@
 #define S_base1         #93a1a1
 #define S_base2         #eee8d5
 #define S_base3         #fdf6e3
-
 
 ! Light
 
@@ -84,11 +82,9 @@ Xft.dpi: 200
 ! --- end of fonts section -----------------------------------------------------
 ! ------------------------------------------------------------------------------
 
-!Xcursor.theme: OSX-ElCap
-Xcursor.theme: capitaine-cursors
+Xcursor.theme: Capitaine Cursors
 Xcursor.size: 38
 
 ! ------------------------------------------------------------------------------
 ! --- end of cursor theme section ----------------------------------------------
 ! ------------------------------------------------------------------------------
-
