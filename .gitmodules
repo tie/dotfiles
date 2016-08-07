@@ -1,18 +1,27 @@
 [submodule ".vim/bundle/fish-syntax"]
-	path = submodules/vim-bundle/fish-syntax
+	path = .config/vim/bundle/fish-syntax
 	url = git://github.com/dag/vim-fish.git
 [submodule ".vim/bundle/vim-nerdtree-tabs"]
-	path = submodules/vim-bundle/vim-nerdtree-tabs
+	path = .config/vim/bundle/vim-nerdtree-tabs
 	url = git://github.com/jistr/vim-nerdtree-tabs.git
 [submodule ".vim/bundle/nerdtree"]
-	path = submodules/vim-bundle/nerdtree
+	path = .config/vim/bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
 [submodule ".vim/bundle/swift.vim"]
-	path = submodules/vim-bundle/swift.vim
+	path = .config/vim/bundle/swift.vim
 	url = git://github.com/keith/swift.vim.git
 [submodule "submodules/capitaine-cursors"]
 	path = submodules/resources/capitaine-cursors
 	url = git://github.com/keeferrourke/capitaine-cursors.git
 [submodule "submodules/vim-bundle/vim-colors-solarized"]
-	path = submodules/vim-bundle/vim-colors-solarized
+	path = .config/vim/bundle/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule ".vim/bundle/vim-pathogen"]
+	path = .config/vim/bundle/vim-pathogen
+	url = git://github.com/tpope/vim-pathogen.git
+[submodule ".vim/bundle/syntastic"]
+	path = .config/vim/bundle/syntastic
+	url = git://github.com/scrooloose/syntastic.git
+[submodule ".config/vim/bundle/vim-git"]
+	path = .config/vim/bundle/vim-git
+	url = git://github.com/tpope/vim-git.git
