@@ -113,7 +113,7 @@ end
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({"dev", "web", "git", "etc" }, s, layouts[2])
+    tags[s] = awful.tag({ "main", "dev", "web", "vcs", "etc" }, s, layouts[2])
 end
 -- }}}
 
@@ -222,7 +222,7 @@ netwidget = lain.widgets.net({
 memicon = wibox.widget.imagebox(beautiful.widget_mem)
 memwidget = lain.widgets.mem({
     settings = function()
-        widget:set_text(" " .. mem_now.used .. "MB ")
+        widget:set_text(" " .. mem_now.used .. "MiB ")
     end
 })
 
