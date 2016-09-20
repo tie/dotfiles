@@ -211,9 +211,9 @@ neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.uti
 netwidget = lain.widgets.net({
     settings = function()
         widget:set_markup(
-            markup(beautiful.S_green, " " .. net_now.received) 
+            markup(beautiful.S_green, " Rx " .. net_now.received) 
             .. " " ..
-            markup(beautiful.S_blue, " " .. net_now.sent .. " ")
+            markup(beautiful.S_blue, " Tx " .. net_now.sent .. " ")
         )
     end
 })
