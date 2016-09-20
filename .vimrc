@@ -31,9 +31,6 @@ if &t_Co > 2 || has("gui_running")
 	syntax on
 endif
 
-" Highlight search results
-set hlsearch
-
 " Set color scheme
 colorscheme solarized
 
@@ -44,6 +41,19 @@ else
 	set background=dark
 endif
 
+" Highlight search results
+set hlsearch
+
+" Highlight current line
+if has('autocmd')
+	autocmd WinEnter * setlocal cursorline
+	autocmd WinLeave * setlocal nocursorline
+endif
+
+" 80 columns, please.
+set textwidth=80
+set colorcolumn=+1
+
 " Change window title
 set title
 " Change title string
@@ -53,17 +63,13 @@ set titlestring=%f\ %a%r%m
 set list
 set listchars=tab:\|\ ,trail:.,nbsp:.,precedes:$,extends:$
 
+" Set default tab size to 2 spaces.
+set tabstop=2 shiftwidth=2
+
 " Syntastic config
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-" 80 columns, please.
-set textwidth=80
-set colorcolumn=+1
-
-" Set default tab size to 2 spaces.
-set tabstop=2 shiftwidth=2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Keyboard and shortcuts
@@ -76,6 +82,8 @@ nmap <silent> ,/ :nohlsearch<CR>
 
 " Enable/disable line numbers.
 nnoremap <Leader>l :set invnumber<CR>
+" Enable/disable relative line numbers.
+nnoremap <Leader>. :set invrelativenumber<CR>
 " Toggle NERDTree
 nnoremap <Leader>n :NERDTreeTabsToggle<CR>
 " Toggle Gudno (undo manager)
