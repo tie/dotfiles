@@ -1,11 +1,4 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ==> Config
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Terminal type for cursor customization
-" - Values: VTE, xfce-terminal, Konsole, iTerm2, iTerm2.tmux
-let terminaltype = "VTE"
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Setup `runtimepath`
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let &rtp = substitute(&rtp, $HOME."/\.vim", $HOME."/\.config/vim", "g")
@@ -22,39 +15,12 @@ execute pathogen#infect()
 " ==> Appearance
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cursor
-if has('unix') || has('macunix')
-	if terminaltype == "VTE"
-		let &t_SI = "\<Esc>[6 q"
-		let &t_SR = "\<Esc>[4 q"
-		let &t_EI = "\<Esc>[2 q"
-	elseif terminaltype == "xfce-terminal" && has("autocmd")
-		let sedcmd = '!sed -i.bak '
-		let xfcerc = '~/.config/xfce4/terminal/terminalrc'
-		let csunderline = 'TERMINAL_CURSOR_SHAPE_UNDERLINE'
-		let csblock = 'TERMINAL_CURSOR_SHAPE_BLOCK'
-
-		let bu = " 's/"+csblock+"/"+csunderline+"/' "
-		let ub = " 's/"+csunderline+"/"+csblock+"/' "
-
-		let cmdbu = sedcmd + "-e" + bu + xfcerc
-		let cmdub = sedcmd + "-e" + ub + xfcerc
-
-		au InsertEnter * silent execute cmdbu
-		au InsertLeave * silent execute cmdub 
-		au VimLeave * silent execute cmdub  
-	elseif terminaltype == "Konsole"
-		let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-		let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-		let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-	elseif terminaltype == "iTerm2"
-		let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-		let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-		let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-	elseif terminaltype == "iTerm2.tmux"
-		let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-		let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-		let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-	endif
+if !has('mac')
+	" Start insert mode
+	let &t_SI = "\<Esc>[6 q"
+	" Start replace mode
+	let &t_SR = "\<Esc>[4 q"
+	let &t_EI = "\<Esc>[2 q"
 endif
 
 " Enable filetype detection
@@ -81,7 +47,11 @@ endif
 " Change window title
 set title
 " Change title string
-let &titlestring = '%f %a%r%m'
+set titlestring=%f\ %a%r%m
+
+" Show special chars
+set list
+set listchars=tab:\|\ ,trail:.,nbsp:.,precedes:$,extends:$
 
 " Syntastic config
 set statusline+=%#warningmsg#
@@ -94,14 +64,6 @@ set colorcolumn=+1
 
 " Set default tab size to 2 spaces.
 set tabstop=2 shiftwidth=2
-
-
-"if has('unix')
-"	let os = substitute(system('uname'), "\n", "", "")
-"endif
-
-"if &t_Co >= 256 || has("gui_running")
-"endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Keyboard and shortcuts
@@ -160,6 +122,17 @@ set pastetoggle=<F2>
 set nobackup
 set nowritebackup
 
+" Use securemodelines instead
+set nomodeline
+
+if has('mac')
+	set backspace=indent,eol,start
+else
+	" Unset backspace.
+	" Hardcore vim commands only :]
+	set backspace&
+endif
+
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -170,10 +143,8 @@ let g:syntastic_check_on_wq = 0
 " http://vim.wikia.com/wiki/Super_retab
 command! -nargs=1 -range Rtab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
 
-" Fix NERDTree arrows encoding in GUI mode.
-if has("gui_running")
-	set encoding=utf-8
-endif
+set encoding=utf-8
+set fileencoding=utf-8
 
 " Enable indention
 filetype plugin indent on
