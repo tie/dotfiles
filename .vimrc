@@ -12,6 +12,30 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> Functions
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function ClearRegistersInRange(start, end)
+	let i = a:start
+	while (i <= a:end)
+		exec 'let @' . nr2char(i) . '=""'
+		let i += 1
+	endwhile
+	unlet i
+endfunction
+
+function ClearRegisters()
+	call ClearRegistersInRange(char2nr("A"), char2nr("Z"))
+	call ClearRegistersInRange(char2nr("a"), char2nr("z"))
+	call ClearRegistersInRange(char2nr("0"), char2nr("9"))
+
+	let str = '/-="'
+	for char in split(str, '\zs')
+		exec 'let @' . char . '=""' 
+	endfor
+	unlet str
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Appearance
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cursor
@@ -44,11 +68,15 @@ endif
 " Highlight search results
 set hlsearch
 
+" Highlight comments with italic font
+highlight Comment cterm=italic gui=italic
+
 " Highlight current line
-if has('autocmd')
-	autocmd WinEnter * setlocal cursorline
-	autocmd WinLeave * setlocal nocursorline
-endif
+augroup CursorLine
+	au!
+	au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+	au WinLeave * setlocal nocursorline
+augroup END
 
 " 80 columns, please.
 set textwidth=80
@@ -61,6 +89,7 @@ set titlestring=%f\ %a%r%m
 
 " Show special chars
 set list
+" Set special chars appearance
 set listchars=tab:\|\ ,trail:.,nbsp:.,precedes:$,extends:$
 
 " Set default tab size to 2 spaces.
@@ -141,6 +170,9 @@ else
 	set backspace&
 endif
 
+" Perfomance imporvements
+set ttyfast
+
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -157,7 +189,5 @@ set fileencoding=utf-8
 " Enable indention
 filetype plugin indent on
 
-if has('autocmd')
-	" DO NOT EXPAND TABS TO SPACES!!!
-	autocmd filetype * set noexpandtab
-endif
+" DO NOT EXPAND TABS TO SPACES!!!
+autocmd filetype * set noexpandtab
