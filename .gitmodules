@@ -28,3 +28,9 @@
 [submodule ".config/vim/bundle/securemodelines"]
 	path = .config/vim/bundle/securemodelines
 	url = git://github.com/ciaranm/securemodelines.git
+[submodule "editorconfig-vim"]
+	path = editorconfig-vim
+	url = git://github.com/editorconfig/editorconfig-vim.git
+[submodule ".config/vim/bundle/editorconfig-vim"]
+	path = .config/vim/bundle/editorconfig-vim
+	url = git://github.com/editorconfig/editorconfig-vim.git
