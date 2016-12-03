@@ -1,79 +1,113 @@
---[[
-
-	Theme: Solarized
-	Author: b1narykid
-
-	Colorscheme: Solarized by Ethan Schoonover
-	             http://ethanschoonover.com/solarized
-
---]]
-
-theme                               = {}
-
-themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/solarized"
-theme.wallpaper                     = themes_dir .. "/wall/solarized.png"
-
-theme.fontName                      = "DejaVu"
-theme.monoFontName                  = "DejaVu Sans Mono"
-theme.fontSize                      = 18
-theme.font                          = theme.fontName .. " " .. theme.fontSize
+--------------------------------------------------------------------------------
+-- Author: Ivan Trubach
+-- Copyright (c) 2016 Ivan Trubach
+--------------------------------------------------------------------------------
+-- Theme: Solarized Dark
+--
+-- Colorscheme: solarized by ethan schoonover
+-- 	http://ethanschoonover.com/solarized
+--------------------------------------------------------------------------------
+theme = {}
+--------------------------------------------------------------------------------
+local themes_dir = os.getenv("HOME") .. "/.config/awesome/themes/solarized"
+theme.wallpaper  = themes_dir .. "/wall/solarized.png"
+--------------------------------------------------------------------------------
+-- System font
+theme.fontName     = "Go"
+theme.monoFontName = "Go Mono"
+theme.fontSize     = 19
+theme.font         = theme.fontName .. " " .. theme.fontSize
+-- Icons font
+theme.iconFontName = "FontAwesome"
 --------------------------------------------------------------------------------
 -- Solarized colors ------------------------------------------------------------
+theme.colors = {
+	base03  = "#002b36",
+	base02  = "#073642",
+	base01  = "#586e75",
+	base00  = "#657b83",
+	base0   = "#839496",
+	base1   = "#93a1a1",
+	base2   = "#eee8d5",
+	base3   = "#fdf6e3",
+	yellow  = "#b58900",
+	orange  = "#cb4b16",
+	red     = "#dc322f",
+	magenta = "#d33682",
+	violet  = "#6c71c4",
+	blue    = "#268bd2",
+	cyan    = "#2aa198",
+	green   = "#859900",
+}
 --------------------------------------------------------------------------------
---theme.darkgray                      = "#002b36"
---theme.gray                          = "#657b83"
-theme.S_base03                      = "#002b36"
-theme.S_base02                      = "#073642"
-theme.S_base01                      = "#586e75"
-theme.S_base00                      = "#657b83"
-theme.S_base0                       = "#839496"
-theme.S_base1                       = "#93a1a1"
-theme.S_base2                       = "#eee8d5"
-theme.S_base3                       = "#fdf6e3"
-theme.S_yellow                      = "#b58900"
-theme.S_orange                      = "#cb4b16"
-theme.S_red                         = "#dc322f"
-theme.S_magenta                     = "#d33682"
-theme.S_violet                      = "#6c71c4"
-theme.S_blue                        = "#268bd2"
-theme.S_cyan                        = "#2aa198"
-theme.S_green                       = "#859900"
+-- General ---------------------------------------------------------------------
+theme.bg_normal     = theme.colors.base03
+theme.bg_focus      = theme.colors.base02
+--theme.bg_urgent     = ???
+--theme.bg_minimize   = ???
+--theme.bg_systray    = ???
+
+theme.fg_normal     = theme.colors.base01
+theme.fg_focus      = theme.colors.base00
+--theme.fg_urgent     = ???
+--theme.fg_minimize   = ???
+
+theme.border_width  = 1
+theme.border_normal = theme.colors.base02
+theme.border_focus  = theme.colors.base1
+--theme.border_marked = ???
 --------------------------------------------------------------------------------
-theme.fg_normal                     = theme.S_base01
-theme.fg_focus                      = theme.S_base1
---theme.fg_urgent                     = "#CC9393"
-theme.bg_normal                     = theme.S_base03 -- "#00000000"
-theme.bg_focus                      = theme.S_base02
---theme.bg_urgent                     = "#1A1A1A"
+-- Taglist ---------------------------------------------------------------------
+theme.taglist_bg_focus    = theme.colors.base02
+theme.taglist_bg_occupied = theme.colors.base03
+theme.taglist_bg_empty    = theme.colors.base03
+--theme.taglist_bg_urgent   = ???
 
-theme.border_width                  = 1
-theme.border_normal                 = theme.S_base02
-theme.border_focus                  = theme.S_base1
-theme.border_marked                 = "#CC9393"
+theme.taglist_fg_focus    = theme.colors.base00
+theme.taglist_fg_empty    = theme.colors.base01
+theme.taglist_fg_occupied = theme.colors.base01
+--theme.taglist_fg_urgent   = ???
+--------------------------------------------------------------------------------
+-- Tasklist --------------------------------------------------------------------
+theme.tasklist_bg_focus  = theme.colors.base03
+--theme.tasklist_bg_urgent = ???
 
---theme.titlebar_bg_focus             = "#FFFFFF"
---theme.titlebar_bg_normal            = "#FFFFFF"
+theme.tasklist_fg_focus  = theme.colors.base00
+--theme.tasklist_fg_urgent = ???
+--------------------------------------------------------------------------------
+-- Titlebar --------------------------------------------------------------------
+--theme.titlebar_bg_focus  = ???
+--theme.titlebar_bg_normal = ???
 
---theme.taglist_fg_focus              = theme.S_base1
---theme.taglist_bg_focus              = "#0f0f0f99"
---theme.taglist_bg_normal             = theme.base03
-
-theme.tasklist_bg_focus             = "FFFFFF00" -- theme.bg_normal
---theme.tasklist_fg_focus             = theme.S_base1
---theme.tasklist_fg_normal            = theme.fg_normal
-
+--theme.titlebar_fg_focus  = ???
+--theme.titlebar_fg_normal = ???
+--------------------------------------------------------------------------------
+-- Tooltip ---------------------------------------------------------------------
+--theme.tooltip_font         = ???
+--theme.tooltip_opacity      = ???
+--theme.tooltip_fg_color     = ???
+--theme.tooltip_bg_color     = ???
+--theme.tooltip_border_width = ???
+--theme.tooltip_border_color = ???
+--------------------------------------------------------------------------------
+-- Mouse finder ----------------------------------------------------------------
+--theme.mouse_finder_color           = ???
+--theme.mouse_finder_timeout         = ???
+--theme.mouse_finder_animate_timeout = ???
+--theme.mouse_finder_radius          = ???
+--theme.mouse_finder_factor          = ???
+--------------------------------------------------------------------------------
+-- Misc ------------------------------------------------------------------------
 --theme.textbox_widget_margin_top     = 0
 theme.notify_fg                     = theme.fg_normal
 theme.notify_bg                     = theme.bg_normal
 theme.notify_border                 = theme.border_focus
 --theme.awful_widget_height           = 14
 --theme.awful_widget_margin_top       = 2
---theme.mouse_finder_color            = "#CC9393"
 theme.menu_height                   = 32
 theme.menu_width                    = 280
 --------------------------------------------------------------------------------
 -- Icons -----------------------------------------------------------------------
---------------------------------------------------------------------------------
 theme.awesome_icon                  = themes_dir .."/icons/awesome16.png"
 
 theme.submenu_icon                  = themes_dir .. "/icons/submenu.png"
@@ -97,30 +131,10 @@ theme.layout_floating               = themes_dir .. "/icons/floating.png"
 theme.arrl_dl                       = themes_dir .. "/icons/arrl_dl.png"
 theme.arrl_ld                       = themes_dir .. "/icons/arrl_ld.png"
 
-theme.widget_ac                     = themes_dir .. "/icons/ac.png"
-theme.widget_battery                = themes_dir .. "/icons/battery.png"
-theme.widget_battery_low            = themes_dir .. "/icons/battery_low.png"
-theme.widget_battery_empty          = themes_dir .. "/icons/battery_empty.png"
-theme.widget_mem                    = themes_dir .. "/icons/mem.png"
-theme.widget_cpu                    = themes_dir .. "/icons/cpu.png"
-theme.widget_temp                   = themes_dir .. "/icons/temp.png"
-theme.widget_net                    = themes_dir .. "/icons/net.png"
-theme.widget_hdd                    = themes_dir .. "/icons/hdd.png"
-theme.widget_music                  = themes_dir .. "/icons/note.png"
-theme.widget_music_on               = themes_dir .. "/icons/note_on.png"
-theme.widget_vol                    = themes_dir .. "/icons/vol.png"
-theme.widget_vol_low                = themes_dir .. "/icons/vol_low.png"
-theme.widget_vol_no                 = themes_dir .. "/icons/vol_no.png"
-theme.widget_vol_mute               = themes_dir .. "/icons/vol_mute.png"
-theme.widget_mail                   = themes_dir .. "/icons/mail.png"
-theme.widget_mail_on                = themes_dir .. "/icons/mail_on.png"
-
 theme.tasklist_disable_icon         = true
 theme.tasklist_floating             = ""
 theme.tasklist_maximized_horizontal = ""
 theme.tasklist_maximized_vertical   = ""
+--------------------------------------------------------------------------------
 
 return theme
-
--- vim: ft=lua ts=4 et
-

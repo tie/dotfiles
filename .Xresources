@@ -69,14 +69,17 @@
 ! ------------------------------------------------------------------------------
 
 xterm*termName: xterm-256color
+xterm*vt100*translations: #override Shift <Btn1Up>: exec-formatted("google-chrome-beta '%t'", PRIMARY)
 
 ! ------------------------------------------------------------------------------
 ! --- end of terminal section --------------------------------------------------
 ! ------------------------------------------------------------------------------
 
-xterm*faceName: DejaVu Sans Mono
+xterm*faceName: Go Mono
 xterm*faceSize: 9
-Xft.dpi: 200
+
+! Actually, 227ppi
+Xft.dpi: 192
 
 ! ------------------------------------------------------------------------------
 ! --- end of fonts section -----------------------------------------------------

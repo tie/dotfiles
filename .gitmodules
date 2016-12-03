@@ -7,9 +7,6 @@
 [submodule ".vim/bundle/nerdtree"]
 	path = .config/vim/bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
-[submodule ".vim/bundle/swift.vim"]
-	path = .config/vim/bundle/swift.vim
-	url = git://github.com/keith/swift.vim.git
 [submodule "submodules/capitaine-cursors"]
 	path = submodules/resources/capitaine-cursors
 	url = git://github.com/keeferrourke/capitaine-cursors.git
@@ -34,3 +31,12 @@
 [submodule ".config/vim/bundle/editorconfig-vim"]
 	path = .config/vim/bundle/editorconfig-vim
 	url = git://github.com/editorconfig/editorconfig-vim.git
+[submodule ".config/vim/bundle/incsearch.vim"]
+	path = .config/vim/bundle/incsearch.vim
+	url = git://github.com/haya14busa/incsearch.vim.git
+[submodule ".config/vim/bundle/gundo.vim"]
+	path = .config/vim/bundle/gundo.vim
+	url = git://github.com/sjl/gundo.vim.git
+[submodule ".config/vim/bundle/rust.vim"]
+	path = .config/vim/bundle/rust.vim
+	url = git://github.com/rust-lang/rust.vim.git
