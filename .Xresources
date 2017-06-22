@@ -76,10 +76,9 @@ xterm*vt100*translations: #override Shift <Btn1Up>: exec-formatted("google-chrom
 ! ------------------------------------------------------------------------------
 
 xterm*faceName: Go Mono
-xterm*faceSize: 9
+xterm*faceSize: 8
 
-! Actually, 227ppi
-Xft.dpi: 192
+Xft.dpi: 227
 
 ! ------------------------------------------------------------------------------
 ! --- end of fonts section -----------------------------------------------------
