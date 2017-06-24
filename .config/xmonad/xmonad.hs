@@ -28,6 +28,7 @@ prompt = themePConfig $
         def { font   = "xft:Noto Mono:size=8"
               -- FIXME: compute height
             , height = 32
+            , historySize = 0
             }
 
 main = xmonad =<< statusBar xmobarCommand pp toggleStrutsKey defaults

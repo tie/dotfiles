@@ -50,9 +50,6 @@ if !has('mac')
 	let &t_EI = "\<Esc>[2 q"
 endif
 
-" Enable filetype detection
-filetype on
-
 " Switch syntax highlighting on, when the terminal has colors
 if &t_Co > 2 || has("gui_running")
 	syntax on
@@ -163,6 +160,10 @@ nnoremap <C-Right>  <C-W>l
 " Paste toggle
 set pastetoggle=<F2>
 
+" Convert `n` spaces to tabs
+" http://vim.wikia.com/wiki/Super_retab
+command! -nargs=1 -range Rtab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Behavior
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -191,19 +192,18 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" Convert `n` spaces to tabs
-" http://vim.wikia.com/wiki/Super_retab
-command! -nargs=1 -range Rtab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
-
 " Force UTF8
 set encoding=utf-8
 set fileencoding=utf-8
+
+" Enable filetype detection
+filetype on
 
 " Enable indention
 filetype plugin indent on
 
 " Force 8 spaces indent width and size
-autocmd filetype * set tabstop=8 shiftwidth=8 softtabstop=8
+" autocmd filetype * set tabstop=8 shiftwidth=8 softtabstop=8
 
 " DO NOT EXPAND TABS TO SPACES!!!
-autocmd filetype * set noexpandtab
+" autocmd filetype * set noexpandtab
