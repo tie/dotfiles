@@ -7,7 +7,7 @@
 - xmonad
 - xmobar (TODO: use taffybar instead)
 - redshift
-- VIM
+- NeoVim
 - ponysay
 - editorconfig
 
