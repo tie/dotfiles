@@ -33,9 +33,12 @@
 [submodule "nvim/bundle/incsearch.vim"]
 	path = .config/nvim/bundle/incsearch.vim
 	url = git://github.com/haya14busa/incsearch.vim.git
-[submodule ".nvim/bundle/gundo.vim"]
+[submodule "nvim/bundle/gundo.vim"]
 	path = .config/nvim/bundle/gundo.vim
 	url = git://github.com/sjl/gundo.vim.git
 [submodule "nvim/bundle/rust.vim"]
 	path = .config/nvim/bundle/rust.vim
 	url = git://github.com/rust-lang/rust.vim.git
+[submodule "nvim/bundle/llvm.vim"]
+	path = .config/nvim/bundle/llvm.vim
+	url = git://github.com/b1narykid/llvm.vim.git
