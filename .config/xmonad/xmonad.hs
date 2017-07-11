@@ -12,7 +12,7 @@ import Theme.Solarized.Colors as Colors
 
 --------------------------------------------------------------------------------
 
-xmobarCommand = "xmobar ~/.config/xmonad/xmobar.hs"
+xmobarCommand = "xmobar ~/.config/xmobar/xmobar.hs"
 
 pp = xmobarPP { ppHiddenNoWindows = const ""
               , ppCurrent = xmobarColor Colors.base00 Colors.base02 . wrap " " " "
@@ -25,7 +25,7 @@ pp = xmobarPP { ppHiddenNoWindows = const ""
               }
 
 prompt = themePConfig $
-        def { font   = "xft:Noto Mono:size=8"
+        def { font   = "xft:Unifont:size=9"
               -- FIXME: compute height
             , height = 32
             , historySize = 0
@@ -38,8 +38,7 @@ defaults = themeConfig $
         , modMask         = mod4Mask
           -- FIXME: redefine keys, layout and events handlers
           --        because we do not want to depend on `def`
-        , keys            = Keys.systemKeys <+> Keys.promptKeys prompt
-                                            <+> keys def
+        , keys            = Keys.promptKeys prompt <+> Keys.defaultKeys
         , layoutHook      = smartBorders (layoutHook def)
         , handleEventHook = handleEventHook def <+> fullscreenEventHook
         }

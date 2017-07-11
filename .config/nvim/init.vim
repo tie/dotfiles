@@ -6,41 +6,18 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Execute pathogen
 execute pathogen#infect()
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ==> Functions
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function ClearRegistersInRange(start, end)
-	let i = a:start
-	while (i <= a:end)
-		exec 'let @' . nr2char(i) . '=""'
-		let i += 1
-	endwhile
-	unlet i
-endfunction
-
-function ClearRegisters()
-	call ClearRegistersInRange(char2nr("A"), char2nr("Z"))
-	call ClearRegistersInRange(char2nr("a"), char2nr("z"))
-	call ClearRegistersInRange(char2nr("0"), char2nr("9"))
-
-	let str = '/-="'
-	for char in split(str, '\zs')
-		exec 'let @' . char . '=""' 
-	endfor
-	unlet str
-endfunction
+" Disable shared data
+set shada="NONE"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Appearance
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cursor
-if !has('mac')
-	" Start insert mode
-	let &t_SI = "\<Esc>[6 q"
-	" Start replace mode
-	let &t_SR = "\<Esc>[4 q"
-	let &t_EI = "\<Esc>[2 q"
-endif
+set guicursor=a:blinkon0
+set guicursor+=n-v-c-ci:block
+set guicursor+=i:ver25
+set guicursor+=r-cr:hor20
+set guicursor+=o:blinkwait300-blinkon200-blinkoff150
 
 " Switch syntax highlighting on, when the terminal has colors
 if &t_Co > 2 || has("gui_running")
@@ -167,13 +144,8 @@ set nowritebackup
 " Use securemodelines/editorconfig instead
 set nomodeline
 
-if has('mac')
-	set backspace=indent,eol,start
-else
-	" Unset backspace.
-	" Hardcore vim commands only :]
-	set backspace&
-endif
+" Unset backspace.
+set backspace=
 
 " Perfomance imporvements
 set ttyfast
@@ -193,9 +165,3 @@ filetype on
 
 " Enable indention
 filetype plugin indent on
-
-" Force 8 spaces indent width and size
-" autocmd filetype * set tabstop=8 shiftwidth=8 softtabstop=8
-
-" DO NOT EXPAND TABS TO SPACES!!!
-" autocmd filetype * set noexpandtab

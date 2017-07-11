@@ -1,4 +1,4 @@
-Config { font = "xft:Noto Mono:size=8"
+Config { font = "xft:Unifont:size=9"
        , additionalFonts = [ "xft:FontAwesome:size=8" ]
        , position = Top
        , bgColor = "#002b36"

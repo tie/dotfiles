@@ -1,0 +1,2 @@
+#!/bin/dash
+exec Xorg -nolisten tcp "$@" vt${XDG_VTNR:-1} -logfile ${XDG_RUNTIME_DIR}/xorg/Xorg.${XDG_VTNR:-1}.log

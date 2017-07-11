@@ -16,6 +16,8 @@
 #define S_cyan          #2aa198
 #define S_green         #859900
 
+
+#if defined(SOLARIZED_DARK)
 ! Dark
 
 #define S_base03        #002b36
@@ -27,16 +29,20 @@
 #define S_base2         #eee8d5
 #define S_base3         #fdf6e3
 
+#elif defined(SOLARIZED_LIGHT)
 ! Light
 
-! #define S_base03        #fdf6e3
-! #define S_base02        #eee8d5
-! #define S_base01        #93a1a1
-! #define S_base00        #839496
-! #define S_base0         #657b83
-! #define S_base1         #586e75
-! #define S_base2         #073642
-! #define S_base3         #002b36
+#define S_base03        #fdf6e3
+#define S_base02        #eee8d5
+#define S_base01        #93a1a1
+#define S_base00        #839496
+#define S_base0         #657b83
+#define S_base1         #586e75
+#define S_base2         #073642
+#define S_base3         #002b36
+
+#endif
+
 
 ! ------------------------------------------------------------------------------
 ! --- end of solarized theme colors --------------------------------------------
@@ -74,8 +80,8 @@
 xterm*termName: xterm-256color
 xterm*vt100*translations: #override Shift <Btn1Up>: exec-formatted("google-chrome-beta '%t'", PRIMARY)
 
-xterm*faceName: Go Mono
-xterm*faceSize: 8
+xterm*faceName: Unifont
+xterm*faceSize: 9
 
 ! ------------------------------------------------------------------------------
 ! --- end of terminal config ---------------------------------------------------

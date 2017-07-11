@@ -3,6 +3,7 @@
 # search on current file.
 root = true
 
+[*]
 # Set to `tab` or `space` to use hard tabs or soft tabs respectively.
 indent_style = space
 
@@ -13,7 +14,7 @@ indent_size = 2
 # A whole number defining the number of columns used to represent
 # a tab character.  This defaults to the value of `indent_size`
 # and doesn't usually need to be specified.
-tab_width = 2
+tab_width = 8
 
 # Set to `lf`, `cr`, or `crlf` to control how line breaks are represented.
 #
