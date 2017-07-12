@@ -2,6 +2,9 @@ if status --is-login
 	compat_source_profile_exports dash
 end
 
+# Dirty hack to make pinentry work
+set -x GPG_TTY (tty)
+
 # git prompt
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate 'yes'

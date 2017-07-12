@@ -4,7 +4,7 @@
    Quick start
 --------------------------------------------------------------------------------
 
-Use GNU Stow to create program's config symlink in your home directory.  Example: `stow nvim` will sym link the files in the `nvim/` directory to the correct place in `$HOME`.
+Use [GNU Stow](https://www.gnu.org/software/stow) to create program's config symlink in your home directory.  Example: `stow nvim` will sym link the files in the `nvim/` directory to the correct place in `$HOME`.
 
    Dependencies
 --------------------------------------------------------------------------------
@@ -27,6 +27,8 @@ Note: `pam_env.so` loads user-defined environment variables.  To load my `pam_en
 - [NeoVim](https://neovim.io) (text editor)
 - [Ponysay](https://erkin.co/ponysay) (TODO: replace with `cowsay | lolcat`)
 - [EditorConfig](https://editorconfig.org)
+
+I also use [Google Chrome](https://www.google.com/chrome) (from [aur/google-chrome](https://aur.archlinux.org/packages/google-chrome)) with JavaScript disabled, but I'm looking forward to migrating to any other free alternative like [NetSurf](https://www.netsurf-browser.org) (which already has all features I need, but it is currently under development).
 
 ### Fonts
 - [GNU Unifont](http://unifoundry.com/unifont.html) ([aur/ttf-unifont](https://aur.archlinux.org/packages/ttf-unifont))
