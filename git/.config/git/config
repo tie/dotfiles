@@ -1,0 +1,6 @@
+[user]
+  name = Ivan Trubach
+  email = mr.trubach@icloud.com
+  signingkey = B041A22FBE112007
+[commit]
+  gpgsign = true

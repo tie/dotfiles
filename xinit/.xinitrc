@@ -10,7 +10,7 @@ then (
 # load resources
 xrdb -DSOLARIZED_DARK -merge ~/.Xresources
 # set background image
-xsetbg -fullscreen -tile dotfiles/solarized.png
+xsetbg -fullscreen -tile .icons/wallpaper.png
 # set root window's pointer cursor
 xsetroot -cursor_name left_ptr
 
