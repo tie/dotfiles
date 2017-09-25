@@ -9,13 +9,7 @@ Use [GNU Stow](https://www.gnu.org/software/stow) to create program's config sym
    Dependencies
 --------------------------------------------------------------------------------
 
-Note: `pam_env.so` loads user-defined environment variables.  To load my `pam_env.so` config, set its `user_envfile` argument to `/.config/pam_env/environment.conf`.  On Arch Linux, consider adding the following line to PAM config (`/etc/pam.d/system-login`)
-
-    session    required   pam_env.so user_envfile=/.config/pam_env/environment.conf
-
-
 ### Programs (incomplete list)
-- [pam_env.so](http://www.linux-pam.org/Linux-PAM-html/sag-pam_env.html) (PAM module)
 - [dash](http://gondor.apana.org.au/~herbert/dash) (POSIX-compliant shell)
 - [fish](https://fishshell.com) (shell)
 - [MOST](http://jedsoft.org/most) (pager)
