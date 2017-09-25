@@ -1,3 +1,2 @@
 #!/bin/dash
-
-blockdev --rereadpt $@
+exec blockdev --rereadpt "$@"

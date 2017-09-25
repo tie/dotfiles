@@ -1,2 +1,2 @@
 #!/bin/dash
-kbdrate -r 80 -d 200
+exec kbdrate -r 80 -d 200

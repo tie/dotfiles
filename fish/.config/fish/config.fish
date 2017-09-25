@@ -1,5 +1,14 @@
-if status --is-login
-	compat_source_profile_exports dash
+if status is-login
+  # POSIX-compat shell will read profiles and then `exec fish -l` in $HOME/.profile
+  # This is the easiest solution I came up with.
+
+  if set -q posix_shell
+    # exec'ed from POSIX shell
+    set -e posix_shell
+  else
+    # fallback to POSIX shell
+    exec dash -l
+  end
 end
 
 # Dirty hack to make pinentry work
