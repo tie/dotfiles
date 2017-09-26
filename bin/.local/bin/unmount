@@ -1,0 +1,4 @@
+#!/bin/dash
+# Why?
+#https://unix.stackexchange.com/questions/9832/why-is-umount-not-spelled-unmount
+exec umount "$@"

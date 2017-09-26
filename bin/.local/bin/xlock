@@ -1,0 +1,3 @@
+#!/bin/dash
+
+exec i3lock -b -f -i $HOME/.icons/wallpaper.png

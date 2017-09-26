@@ -1,0 +1,8 @@
+#!/bin/dash
+
+device="/dev/$1"
+mountp="$HOME/.local/mnt/$1"
+shift
+
+mkdir -p $mountp
+mount "$@" $device $mountp
