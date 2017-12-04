@@ -3,6 +3,9 @@
   email = mr.trubach@icloud.com
   signingkey = Ivan Trubach <mr.trubach@icloud.com>
 
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+
 [commit]
   gpgsign = true
 
