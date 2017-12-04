@@ -11,14 +11,14 @@ function fish_prompt
 	end
 
 	if not set -q __fish_prompt_hostname
-		set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
+		set -g __fish_prompt_hostname (hostname --fqdn)
 	end
 
 	set -l __fish_prompt_pwd (set_color $color_cwd)(prompt_pwd)(set_color normal)
 
 	set_color normal # print basic prompt
 	printf '%s@%s %s' $USER $__fish_prompt_hostname $__fish_prompt_pwd
-	
+
 	if test $VIRTUAL_ENV # should be a separate function
 		set -l __fish_prompt_virtual_env (set_color blue)(basename $VIRTUAL_ENV)(set_color normal)
 		printf ' {%s}' $__fish_prompt_virtual_env
@@ -34,6 +34,3 @@ function fish_right_prompt
 		printf "[%s]" (set_color red)"$st"(set_color normal)
 	end
 end
-
-# vim: ts=4
-
