@@ -1,8 +1,7 @@
 #!/bin/dash
 
-device="/dev/$1"
-mountp="$HOME/.local/mnt/$1"
+p="$HOME"/.local/mnt/"$1"
 shift
 
-mkdir -p $mountp
-mount "$@" $device $mountp
+mkdir -p "$p"
+mount "$@" /dev/"$1" "$p"
