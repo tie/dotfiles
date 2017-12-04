@@ -147,21 +147,11 @@ set nomodeline
 " Unset backspace.
 set backspace=
 
-" Perfomance imporvements
-set ttyfast
-
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" Force UTF8
-set encoding=utf-8
-set fileencoding=utf-8
-
 " Enable filetype detection
 filetype on
-
-" Enable indention
-filetype plugin indent on
