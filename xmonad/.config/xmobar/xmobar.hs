@@ -19,12 +19,13 @@ Config { font = "xft:Unifont:size=9"
                    , "-t", "<total>%"
                    ] 10
            -- Because I Don't Use Windows
-         , Run Weather "UUEE" [ "-t", "<skyCondition>" ] 36000
+         --, Run Weather "UUEE" [ "-t", "<skyCondition>" ] 36000
          , Run Memory [ "-t", "<usedratio>%" ] 10
          , Run Date "%a, %b %_d" "date" 864000 -- day
          , Run Date "%I:%M %p" "time" 600
          ]
        , sepChar = "%"
        , alignSep = "{}"
-       , template = "%StdinReader% { %date% // %time% // %UUEE% } | %battery% <fn=1></fn> | %cpu% <fn=1></fn> | %memory% <fn=1></fn> "
+       --, template = "%StdinReader% { %date% // %time% // %UUEE% } | %battery% <fn=1></fn> | %cpu% <fn=1></fn> | %memory% <fn=1></fn> "
+       , template = "%StdinReader% { %date% // %time% } | %battery% <fn=1></fn> | %cpu% <fn=1></fn> | %memory% <fn=1></fn> "
        }
