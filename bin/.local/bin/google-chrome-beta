@@ -10,6 +10,7 @@ exec /opt/google/chrome-beta/google-chrome-beta \
    --user-data-dir="$XDG_RUNTIME_DIR"/chrome/user \
    --enable-potentially-annoying-security-features \
    --disable-sync \
+   --enable-quic \
    --google-base-url=https://privatelee.com/ \
    --enable-features=OverlayScrollbar \
    --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36" \
