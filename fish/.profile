@@ -18,6 +18,7 @@ export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
 # Compilers
 export GOPATH=$home/.local
 export CFLAGS="-Wno-parentheses -Wno-implicit-int"
+export PYTHONSTARTUP=$XDG_CONFIG_HOME/pythonrc
 
 export posix_shell=
 exec fish -l
