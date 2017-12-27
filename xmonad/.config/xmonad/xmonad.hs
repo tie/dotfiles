@@ -8,7 +8,7 @@ import XMonad.Prompt
 
 import Keys
 import Theme.Solarized
-import Theme.Solarized.Colors as Colors
+import Theme.Solarized.Dark as Colors
 
 --------------------------------------------------------------------------------
 

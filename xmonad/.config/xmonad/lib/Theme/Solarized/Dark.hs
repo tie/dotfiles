@@ -1,4 +1,4 @@
-module Theme.Solarized.Colors
+module Theme.Solarized.Dark
   ( base03
   , base02
   , base01

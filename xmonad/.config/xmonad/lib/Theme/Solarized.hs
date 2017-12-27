@@ -1,5 +1,5 @@
 module Theme.Solarized
-  ( module Colors
+  ( module Dark
   , themeConfig
   , themePConfig
   ) where
@@ -7,18 +7,18 @@ module Theme.Solarized
     import XMonad
     import XMonad.Prompt
 
-    import qualified Theme.Solarized.Colors as Colors
+    import qualified Theme.Solarized.Dark as Dark
 
     themeConfig c = c { borderWidth        = 1
-                      , normalBorderColor  = Colors.base02
-                      , focusedBorderColor = Colors.base1
+                      , normalBorderColor  = Dark.base02
+                      , focusedBorderColor = Dark.base1
                       }
 
     themePConfig c = c { position          = Top
-                       , bgColor           = Colors.base03
-                       , fgColor           = Colors.base0
-                       , fgHLight          = Colors.base00
-                       , bgHLight          = Colors.base02
-                       , borderColor       = Colors.base02
+                       , bgColor           = Dark.base03
+                       , fgColor           = Dark.base0
+                       , fgHLight          = Dark.base00
+                       , bgHLight          = Dark.base02
+                       , borderColor       = Dark.base02
                        , promptBorderWidth = 1
                        }
