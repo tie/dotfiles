@@ -40,10 +40,9 @@ TODO: remove unused fonts
 
 #### References
 - [Why the Keyboard?][1]
-- [Switching between ConnMan and NetworkManager][2] (TODO)
 
 [1]: https://github.com/noctuid/dotfiles/blob/master/README.org#why-the-keyboard
-[2]: https://forum.manjaro.org/t/switching-between-connman-and-networkmanager/22285
+
 
 [GNU Stow]: https://www.gnu.org/software/stow
 [NetSurf]: https://www.netsurf-browser.org
