@@ -1,13 +1,13 @@
 #!/bin/dash
 
-mkdir -p "$XDG_RUNTIME_DIR"/chrome/cache
-mkdir -p "$XDG_RUNTIME_DIR"/chrome/user
+mkdir -p "$run"/chrome/cache
+mkdir -p "$run"/chrome/user
 
-touch "$XDG_RUNTIME_DIR/chrome/user/First Run"
+touch "$run"/chrome/user/"First Run"
 
 exec /opt/google/chrome-beta/google-chrome-beta \
-   --disk-cache-dir="$XDG_RUNTIME_DIR"/chrome/cache \
-   --user-data-dir="$XDG_RUNTIME_DIR"/chrome/user \
+   --disk-cache-dir="$run"/chrome/cache \
+   --user-data-dir="$run"/chrome/user \
    --enable-potentially-annoying-security-features \
    --disable-sync \
    --enable-quic \
