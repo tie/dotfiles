@@ -31,4 +31,4 @@ exec /opt/google/chrome-beta/google-chrome-beta \
   --enable-quic \
   "$@"
 
-# https://github.com/CHEF-KOCH/Chromium-hardening/blob/master/command%20line/cmd.txt
+# https://github.com/chef-koch/chromium-hardening/blob/master/command%20line/cmd.txt
