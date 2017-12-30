@@ -1,19 +1,34 @@
 #!/bin/dash
 
-mkdir -p "$run"/chrome/cache
-mkdir -p "$run"/chrome/user
+cache="$run"/chrome/cache
+ user="$run"/chrome/user
 
-touch "$run"/chrome/user/"First Run"
+mkdir -p "$cache" "$user"
+touch "$run"/chrome/user/'First Run'
 
+search='https://ddg.gg/lite/'
+agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36'
 exec /opt/google/chrome-beta/google-chrome-beta \
-   --disk-cache-dir="$run"/chrome/cache \
-   --user-data-dir="$run"/chrome/user \
-   --enable-potentially-annoying-security-features \
-   --disable-sync \
-   --enable-quic \
-   --google-base-url=https://privatelee.com/ \
-   --enable-features=OverlayScrollbar \
-   --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36" \
-   --show-cert-link \
-   --no-referrers \
-   "$@"
+  --disk-cache-dir="$cache" \
+  --user-data-dir="$user" \
+  --enable-potentially-annoying-security-features \
+  --mark-non-secure-as=non-secure \
+  --autoplay-policy=user-gesture-required-for-cross-origin \
+  --disable-sync \
+  --no-referrers \
+  --no-pings \
+  --site-per-process \
+  --enable-checker-imaging \
+  --enable-experimental-fullscreen-exit-ui \
+  --disable-password-generation \
+  --show-saved-copy=primary \
+  --google-base-url="$search" \
+  --enable-features=OverlayScrollbar,NoScriptPreviews --enable-tab-audio-muting \
+  --blink-settings=disallowFetchForDocWrittenScriptsInMainFrame=false \
+  --disable-features=AppBanners,ExperimentalAppBanners,AutofillCreditCardAblationExperiment,AutofillCreditCardLastUsedDateDisplay,AutofillSendBillingCustomerNumber,AutofillUpstreamSendDetectedValues,AutofillUpstreamSendPanFirstSix,DesktopIOSPromotion,EnableUsernameCorrection,GamepadExtensions,GenericSensor,GenericSensorExtraClasses,NewUsbBackend,NoStatePrefetch,OpenVR,SafeSearchUrlReporting,SpeculativeResourcePrefetching,enable-manual-password-generation,enable-password-force-saving \
+  --user-agent="$agent" \
+  --show-cert-link \
+  --enable-quic \
+  "$@"
+
+# https://github.com/CHEF-KOCH/Chromium-hardening/blob/master/command%20line/cmd.txt
