@@ -18,6 +18,8 @@ export    EDITOR=nvim
 export   BROWSER=google-chrome-beta
 export GNUPGHOME="$cfg"/gnupg
 
+export XCURSOR_PATH="$cfg"/resources
+
 # Compilers
 export GOPATH="$home"/.local
 export CFLAGS="-Wno-parentheses -Wno-implicit-int"
