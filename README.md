@@ -29,10 +29,10 @@ forward to migrating to any other free (and libre) alternative like [NetSurf],
 which already has all features I need, but it is currently under development.
 
 ### Fonts
-- [GNU Unifont], ([aur/ttf-unifont])
-- [FontAwesome], ([aur/ttf-font-awesome-4])
-- [Noto], ([extra/noto-fonts], [extra/noto-fonts-cjk], [extra/noto-fonts-emoji])
-- [Go Font], ([aur/go-fonts-git])
+- [GNU Unifont] — for terminals and GUI ([aur/ttf-unifont])
+- [FontAwesome] — fancy GUI icons ([aur/ttf-font-awesome-4])
+- [Noto] — for web browsers ([extra/noto-fonts], [extra/noto-fonts-cjk], [extra/noto-fonts-emoji])
+- [Go Font] — why? ([aur/go-fonts-git])
 
 TODO: remove unused fonts
 
