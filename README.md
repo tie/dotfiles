@@ -30,7 +30,7 @@ which already has all features I need, but it is currently under development.
 
 ### Fonts
 - [GNU Unifont], ([aur/ttf-unifont])
-- [FontAwesome], ([aur/ttf-font-awesome])
+- [FontAwesome], ([aur/ttf-font-awesome-4])
 - [Noto], ([extra/noto-fonts], [extra/noto-fonts-cjk], [extra/noto-fonts-emoji])
 - [Go Font], ([aur/go-fonts-git])
 
@@ -55,7 +55,7 @@ TODO: remove unused fonts
 [Noto]: https://www.google.com/get/noto
 [Go Font]: https://blog.golang.org/go-fonts
 [aur/ttf-unifont]: https://aur.archlinux.org/packages/ttf-unifont
-[aur/ttf-font-awesome]: https://aur.archlinux.org/packages/ttf-font-awesome
+[aur/ttf-font-awesome-4]: https://aur.archlinux.org/packages/ttf-font-awesome-4
 [extra/noto-fonts]: https://www.archlinux.org/packages/extra/any/noto-fonts
 [extra/noto-fonts-cjk]: https://www.archlinux.org/packages/extra/any/noto-fonts-cjk
 [extra/noto-fonts-emoji]: https://www.archlinux.org/packages/extra/any/noto-fonts-emoji
