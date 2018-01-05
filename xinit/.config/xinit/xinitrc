@@ -8,9 +8,9 @@ then (
 ) fi
 
 # load resources
-xrdb -DSOLARIZED_DARK -merge "$cfg"/resources/db
+xrdb -DSOLARIZED_DARK -merge "$res"/db
 # set background image
-xsetbg -fullscreen -tile "$cfg"/resources/wallpaper.png
+xsetbg -fullscreen -tile "$res"/wallpaper.png
 # set root window's pointer cursor
 xsetroot -cursor_name left_ptr
 

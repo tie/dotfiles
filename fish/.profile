@@ -11,6 +11,7 @@ export   XDG_DATA_HOME="$home"/.local/share
 export cfg="$XDG_CONFIG_HOME"
 export run="$XDG_RUNTIME_DIR"
 export dat="$XDG_DATA_HOME"
+export res="$cfg"/res
 
 # User programs
 export     PAGER=most
@@ -18,7 +19,7 @@ export    EDITOR=nvim
 export   BROWSER=google-chrome-beta
 export GNUPGHOME="$cfg"/gnupg
 
-export XCURSOR_PATH="$cfg"/resources
+export XCURSOR_PATH="$res"
 
 # Compilers
 export GOPATH="$home"/.local
