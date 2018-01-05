@@ -18,7 +18,6 @@ exec /opt/google/chrome-beta/google-chrome-beta \
   --no-referrers \
   --no-pings \
   --site-per-process \
-  --enable-checker-imaging \
   --enable-experimental-fullscreen-exit-ui \
   --disable-password-generation \
   --show-saved-copy=primary \
