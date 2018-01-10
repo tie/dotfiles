@@ -79,7 +79,7 @@
 xterm*termName: xterm-256color
 xterm*vt100*translations: #override Shift <Btn1Up>: exec-formatted("google-chrome-beta '%t'", PRIMARY)
 
-xterm*faceName: Unifont
+xterm*faceName: DejaVu Sans Mono
 xterm*faceSize: 9
 
 ! ------------------------------------------------------------------------------

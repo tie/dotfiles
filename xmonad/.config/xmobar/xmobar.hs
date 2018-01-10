@@ -1,9 +1,8 @@
-Config { font = "xft:Unifont:size=9"
+Config { font = "xft:DejaVu Sans Mono:size=9"
        , additionalFonts = [ "xft:FontAwesome:size=8" ]
        , position = Top
        , bgColor = "#002b36"
        , fgColor = "#586e75"
-       --, alpha = 0
        , commands =
          [ Run StdinReader
          , Run BatteryP [ "BAT0" ]

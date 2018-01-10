@@ -7,12 +7,25 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Prompt
 
 import Keys
-import Theme.Solarized
 import Theme.Solarized.Dark as Colors
 
 --------------------------------------------------------------------------------
 
 xmobarCommand = "xmobar ~/.config/xmobar/xmobar.hs"
+
+themeConfig c = c { borderWidth        = 1
+                  , normalBorderColor  = Colors.base02
+                  , focusedBorderColor = Colors.base1
+                  }
+
+themePConfig c = c { position          = Top
+                   , bgColor           = Colors.base03
+                   , fgColor           = Colors.base0
+                   , fgHLight          = Colors.base00
+                   , bgHLight          = Colors.base02
+                   , borderColor       = Colors.base02
+                   , promptBorderWidth = 1
+                   }
 
 pp = xmobarPP { ppHiddenNoWindows = const ""
               , ppCurrent = xmobarColor Colors.base00 Colors.base02 . wrap " " " "
@@ -25,9 +38,9 @@ pp = xmobarPP { ppHiddenNoWindows = const ""
               }
 
 prompt = themePConfig $
-        def { font   = "xft:Unifont:size=9"
+        def { font   = "xft:DejaVu Sans Mono:size=9"
               -- FIXME: compute height
-            , height = 32
+            , height = 38
             , historySize = 0
             }
 
