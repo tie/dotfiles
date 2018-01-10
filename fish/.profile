@@ -25,6 +25,7 @@ export XCURSOR_PATH="$res"
 export GOPATH="$home"/.local
 export CFLAGS="-Wno-parentheses -Wno-implicit-int"
 export PYTHONSTARTUP="$cfg"/pythonrc
+export PYTHONDONTWRITEBYTECODE=1
 
 export posix_shell=
 exec fish -l
