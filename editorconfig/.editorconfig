@@ -5,12 +5,12 @@ root = true
 
 [*]
 # Set to `tab` or `space` to use hard tabs or soft tabs respectively.
-indent_style = space
+indent_style = tab
 
 # A whole number defining the number of columns used for each indentation level
 # and the width of soft tabs (when supported).  When set to tab,
 # the value of `tab_width` (if specified) will be used.
-indent_size = 2
+indent_size = 8
 # A whole number defining the number of columns used to represent
 # a tab character.  This defaults to the value of `indent_size`
 # and doesn't usually need to be specified.
@@ -37,7 +37,6 @@ trim_trailing_whitespace = true
 # `off` to turn off this feature (use the editor settings).
 max_line_length = 80
 
-[*.go]
-indent_style = tab
-indent_size = 8
-tab_width = 8
+[*.py]
+indent_style = space
+indent_size = 2
