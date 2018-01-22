@@ -1,4 +1,0 @@
-#!/bin/dash
-mkdir -p "$run"/xorg
-vtnr="${XDG_VTNR:-1}"
-exec Xorg -nolisten tcp "$@" vt$vtnr -logfile "$run"/xorg/Xorg."$vtnr".log
