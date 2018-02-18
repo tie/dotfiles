@@ -11,7 +11,7 @@ export   XDG_DATA_HOME="$home"/.local/share
 export cfg="$XDG_CONFIG_HOME"
 export run="$XDG_RUNTIME_DIR"
 export dat="$XDG_DATA_HOME"
-export res="$cfg"/res
+export res="$cfg"/xorg
 
 # User programs
 export     PAGER=most

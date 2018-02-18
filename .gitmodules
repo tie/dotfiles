@@ -1,5 +1,5 @@
 [submodule "resources/capitaine-cursors"]
-	path = resources/.config/res/capitaine-cursors
+	path = xorg/.config/xorg/capitaine-cursors
 	url = git://github.com/keeferrourke/capitaine-cursors.git
 
 # Vim plugins
