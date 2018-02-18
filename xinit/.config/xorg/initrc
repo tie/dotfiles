@@ -8,22 +8,22 @@ then (
 ) fi
 
 # load resources
-xrdb -DSOLARIZED_DARK -merge "$res"/db
-# set background image
-xsetbg -fullscreen -tile "$res"/wallpaper.png
+xrdb -DSOLARIZED_DARK -merge $res/db
+
 # set root window's pointer cursor
 xsetroot -cursor_name left_ptr
-
 # keyboard rate
 xset r rate 200 80
+
 # 'night shift'
 redshift &
 
-xbindkeys -fg "$cfg"/xbindkeys/xbindkeys.scm
+# key bindings
+xbindkeys -fg $cfg/xbindkeys/xbindkeys.scm
 
-export XMONAD_CONFIG_DIR="$cfg"/xmonad
-export XMONAD_CACHE_DIR="$run"/xmonad
-export XMONAD_DATA_DIR="$dat"/xmonad
+export XMONAD_CONFIG_DIR=$cfg/xmonad
+export XMONAD_CACHE_DIR=$run/xmonad
+export XMONAD_DATA_DIR=$dat/xmonad
 
 mkdir -p "$XMONAD_CACHE_DIR"
 mkdir -p "$XMONAD_DATA_DIR"

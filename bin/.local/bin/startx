@@ -1,7 +1,6 @@
 #!/bin/dash
 
+mkdir -p $run/xorg
+
 export DISPLAY=:$XDG_VTNR
-
-mkdir -p "$run"/xorg
-exec xinit $cfg/xinit/xinitrc -- /bin/Xorg $DISPLAY vt$XDG_VTNR -nolisten tcp -logfile "$run"/xorg/Xorg."$XDG_VTNR".log
-
+exec xinit $cfg/xorg/initrc -- /bin/Xorg $DISPLAY vt$XDG_VTNR -nolisten tcp -logfile $run/xorg/Xorg.$XDG_VTNR.log
