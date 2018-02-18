@@ -24,7 +24,6 @@ exec /opt/google/chrome-beta/google-chrome-beta \
   --enable-features=OverlayScrollbar,NoScriptPreviews --enable-tab-audio-muting \
   --blink-settings=disallowFetchForDocWrittenScriptsInMainFrame=false \
   --disable-features=AppBanners,ExperimentalAppBanners,AutofillCreditCardAblationExperiment,AutofillCreditCardLastUsedDateDisplay,AutofillSendBillingCustomerNumber,AutofillUpstreamSendDetectedValues,AutofillUpstreamSendPanFirstSix,DesktopIOSPromotion,EnableUsernameCorrection,GamepadExtensions,GenericSensor,GenericSensorExtraClasses,NewUsbBackend,NoStatePrefetch,OpenVR,SafeSearchUrlReporting,SpeculativeResourcePrefetching,enable-manual-password-generation,enable-password-force-saving \
-  --user-agent= \
   --show-cert-link \
   --enable-quic \
   "$@"
