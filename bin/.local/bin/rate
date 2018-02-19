@@ -1,0 +1,47 @@
+#!/bin/dash
+# Usage
+#   crypto/rate [[query] exchange-rate-currency]
+#
+# Examples
+#   crypto/rate
+#   => curl rate.cx
+#
+#   crypto/rate rub
+#   env c=rub crypto/rate
+#   => curl rub.rate.cx
+#
+#   crypto/rate n=20 rub
+#   env c=rub q=n=20 crypto/rate
+#   => curl rub.rate.cx/?n=20
+#
+#   crypto/rate T n=20 rub
+#   => curl rub.rate.cx/?T&n=20
+#
+#   env q='T&n=20' crypto/rate
+#   => curl rate.cx/?T&n=20
+
+for arg
+do
+	if [ ! -z $c ]
+	then
+		if [ -z $q ]
+		then
+			q="$c"
+		else
+			q="$q&$c"
+		fi
+	fi
+	c=$arg
+done
+
+if [ ! -z $q ]
+then
+	q="/?$q"
+fi
+
+if [ ! -z $c ]
+then
+	c="$c."
+fi
+
+curl "$c"rate.sx"$q"
