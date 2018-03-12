@@ -1,15 +1,73 @@
 #!/bin/dash
 
-cache="$run"/chrome/cache
- user="$run"/chrome/user
+chrome="$run"/chrome
+(
+	user="$chrome"/user
+	cache="$chrome"/cache
 
-mkdir -p "$cache" "$user"
-touch "$run"/chrome/user/'First Run'
+# create dir tree if needed
+	if test ! -d "$chrome"
+	then mkdir "$chrome"
+	fi
+	if test ! -d "$cache"
+	then mkdir "$cache"
+	fi
+	if test ! -d "$user"
+	then mkdir "$user"
+	fi
 
-search='https://ddg.gg/lite/'
+# don't show me welcome windows
+	if test ! -f "$user"/'First Run'
+	then >"$user"/'First Run'
+	fi
+
+# write default config file
+#
+# finding JSON keys for options is a bit tricky:
+# 0. delete all chrome data (chrome/user and chrome/data directories)
+#    most modern systems mount tmpfs on XDG_RUNTIME_DIR anyway
+# 1. launch chrome, kill chrome, launch it again
+# 2. enable/disable option in GUI
+# 3. kill chrome (or, somehow, force syncing preferences to disk)
+# 4. $ json_pp >old <user/Default/Preferences
+# 5. launch chrome and disable/enable the same option
+# 6. kill chrome (to save prefs again)
+# 7. $ json_pp >new <user/Default/Preferences
+# 8. $ diff old new
+# Also, consider using the following options with `diff`:
+#   --unchanged-line-format="" --old-line-format="" --new-line-format="%dn %L"
+# This will add line numbers and hide everything except changed lines.
+#
+# After adding a few options, though, you will be familiar with pretty printed
+# Google Chrome preferences :]
+	if test ! -d "$user"/Default
+	then mkdir "$user/"Default
+	fi
+	if test ! -f "$user"/Default/Preferences
+	then sed "s/^\t//" >"$user"/Default/Preferences <<EOF
+	{
+	 "enable_do_not_track": true,
+	 "safebrowsing": { "enabled": false },
+	 "search": { "suggest_enabled": false },
+	 "net": { "network_prediction_options" : 2 },
+	 "alternate_error_pages": { "enabled": false },
+	 "extensions": { "theme": { "use_system": true } },
+	 "profile": {
+	  "name": "Ivan Trubach", "avatar_index": 12,
+	  "default_content_setting_values": {
+	   "ppapi_broker": 2,
+	   "notifications": 2,
+	   "automatic_downloads": 2
+	  }
+	 }
+	}
+EOF
+	fi
+)
+
 exec /opt/google/chrome-beta/google-chrome-beta \
-  --disk-cache-dir="$cache" \
-  --user-data-dir="$user" \
+  --disk-cache-dir="$chrome"/cache \
+  --user-data-dir="$chrome"/user \
   --enable-potentially-annoying-security-features \
   --mark-non-secure-as=non-secure \
   --autoplay-policy=user-gesture-required-for-cross-origin \
@@ -20,7 +78,7 @@ exec /opt/google/chrome-beta/google-chrome-beta \
   --enable-experimental-fullscreen-exit-ui \
   --disable-password-generation \
   --show-saved-copy=primary \
-  --google-base-url="$search" \
+  --google-base-url='https://ddg.gg/lite/' \
   --enable-features=OverlayScrollbar,NoScriptPreviews --enable-tab-audio-muting \
   --blink-settings=disallowFetchForDocWrittenScriptsInMainFrame=false \
   --disable-features=AppBanners,ExperimentalAppBanners,AutofillCreditCardAblationExperiment,AutofillCreditCardLastUsedDateDisplay,AutofillSendBillingCustomerNumber,AutofillUpstreamSendDetectedValues,AutofillUpstreamSendPanFirstSix,DesktopIOSPromotion,EnableUsernameCorrection,GamepadExtensions,GenericSensor,GenericSensorExtraClasses,NewUsbBackend,NoStatePrefetch,OpenVR,SafeSearchUrlReporting,SpeculativeResourcePrefetching,enable-manual-password-generation,enable-password-force-saving \
