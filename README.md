@@ -5,8 +5,8 @@
 --------------------------------------------------------------------------------
 
 Use [GNU Stow] to create program's config symlink in your home directory.
-Example: `stow nvim` will sym link the files in the `nvim/` directory
-to the correct place in your home directory.
+Example: `stow nvim -d dotfiles -t .config` will sym link the files in the
+`nvim/` directory to the correct place in your `.config` directory.
 
    Dependencies
 --------------------------------------------------------------------------------
@@ -30,7 +30,6 @@ which already has all features I need, but it is currently under development.
 
 ### Fonts
 - [GNU Unifont] — for terminals and GUI ([aur/ttf-unifont])
-- [FontAwesome] — fancy GUI icons ([aur/ttf-font-awesome-4])
 - [Noto] — for web browsers ([extra/noto-fonts], [extra/noto-fonts-cjk], [extra/noto-fonts-emoji])
 - [Go Font] — why? ([aur/go-fonts-git])
 
@@ -51,11 +50,9 @@ TODO: remove unused fonts
 [aur/google-chrome-beta]: https://aur.archlinux.org/packages/google-chrome-beta
 
 [GNU Unifont]: http://unifoundry.com/unifont.html
-[FontAwesome]: http://fontawesome.io
 [Noto]: https://www.google.com/get/noto
 [Go Font]: https://blog.golang.org/go-fonts
 [aur/ttf-unifont]: https://aur.archlinux.org/packages/ttf-unifont
-[aur/ttf-font-awesome-4]: https://aur.archlinux.org/packages/ttf-font-awesome-4
 [extra/noto-fonts]: https://www.archlinux.org/packages/extra/any/noto-fonts
 [extra/noto-fonts-cjk]: https://www.archlinux.org/packages/extra/any/noto-fonts-cjk
 [extra/noto-fonts-emoji]: https://www.archlinux.org/packages/extra/any/noto-fonts-emoji
