@@ -1,6 +1,6 @@
 #!/bin/dash
 
-mkdir -p $run/xorg
+mkdir -p "$XDG_RUNTIME_DIR"/xorg
 
-export DISPLAY=:$XDG_VTNR
-exec xinit $cfg/xorg/initrc -- /bin/Xorg $DISPLAY vt$XDG_VTNR -nolisten tcp -logfile $run/xorg/Xorg.$XDG_VTNR.log
+export DISPLAY=:"$XDG_VTNR"
+exec xinit "$XDG_CONFIG_HOME"/xorg/initrc -- /bin/Xorg "$DISPLAY" vt"$XDG_VTNR" -nolisten tcp -logfile "$XDG_RUNTIME_DIR"/xorg/Xorg.$XDG_VTNR.log

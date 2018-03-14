@@ -20,7 +20,7 @@ toggleStrutsKey XConfig{modMask = modm} = (modm, xK_b)
 --------------------------------------------------------------------------------
 
 main =
- xmonad =<< statusBar "xmobar $cfg/xmobar/xmobar.hs" pp toggleStrutsKey defaults
+ xmonad =<< statusBar "xmobar \"$XDG_CONFIG_HOME\"/xmobar/xmobar.hs" pp toggleStrutsKey defaults
 
 pp = xmobarPP { ppHiddenNoWindows = const ""
               , ppCurrent = wrap "[" "]"

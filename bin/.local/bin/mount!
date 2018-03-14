@@ -1,6 +1,6 @@
 #!/bin/dash
 
-p="$home"/.local/mnt/"$1"
+p="$HOME"/.local/mnt/"$1"
 d="$1"
 shift
 

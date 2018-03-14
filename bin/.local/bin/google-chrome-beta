@@ -1,6 +1,6 @@
 #!/bin/dash
 
-chrome="$run"/chrome
+chrome="$XDG_RUNTIME_DIR"/chrome
 (
 	user="$chrome"/user
 	cache="$chrome"/cache
