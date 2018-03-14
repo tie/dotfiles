@@ -28,6 +28,3 @@ export PYTHONSTARTUP="$cfg"/pythonrc
 export PYTHONDONTWRITEBYTECODE=1
 
 export AURDEST="$run"/pacaur
-
-export posix_shell=
-exec fish -l

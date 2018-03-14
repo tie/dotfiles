@@ -1,15 +1,10 @@
 if status is-login
-  # POSIX-compatible shell will read systemd profiles and then do `exec fish -l`
-  # at the end of $home/.profile.  This is the purest solution I came up with
-  # because user's shell is still `/bin/fish`.
-
-  if set -q posix_shell
-    # exec'ed from POSIX shell
-    set -e posix_shell
-  else
-    # fallback to POSIX shell
-    exec dash -l
+  # POSIX-compatible shell will read system profiles and then `exec fish -l`.
+  if not set -q posix_shell
+    exec dash -l -c 'posix_shell= exec fish -l'
   end
+  # exec'ed from POSIX shell
+  set -e posix_shell
 end
 
 # Dirty hack to make pinentry work
