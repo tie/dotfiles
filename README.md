@@ -4,9 +4,10 @@
    Quick start
 --------------------------------------------------------------------------------
 
-Use [GNU Stow] to create program's config symlink in your home directory.
-Example: `stow nvim -d dotfiles -t .config` will sym link the files in the
-`nvim/` directory to the correct place in your `.config` directory.
+Makefile uses [GNU Stow] to create program's config symlink in your `HOME`,
+`XDG_CONFIG_HOME` and `XDG_DATA_HOME/../bin`  directories.  E.g. running
+`make core` will create a symlink to `.profile` in `HOME`, fish config in
+`XDG_CONFIG_HOME` and (for some reason) also my git config.
 
    Dependencies
 --------------------------------------------------------------------------------
@@ -15,10 +16,11 @@ Example: `stow nvim -d dotfiles -t .config` will sym link the files in the
 - [dash](http://gondor.apana.org.au/~herbert/dash) (POSIX-compliant shell)
 - [fish](https://fishshell.com) (shell)
 - [MOST](https://jedsoft.org/most) (pager)
-- [Xorg](https://x.org) (X11)
+- [Xorg](https://x.org) (X11) (TODO: wayland)
 - [XBindKeys](http://nongnu.org/xbindkeys)
-- [xmonad](https://xmonad.org) (WM)
-- [xmobar](http://projects.haskell.org/xmobar) (TODO: use taffybar instead)
+- [xmonad](https://xmonad.org) (WM) (TODO: waymonad is good, but I was not able
+                                           to statically link with dependencies)
+- [xmobar](http://projects.haskell.org/xmobar)
 - [Redshift](https://jonls.dk/redshift)
 - [NeoVim](https://neovim.io) (text editor)
 - [Ponysay](https://erkin.co/ponysay) (TODO: replace with `cowsay | lolcat`)
