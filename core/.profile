@@ -17,7 +17,7 @@ export XCURSOR_PATH="$XDG_CONFIG_HOME"/xorg
 # Compilers
 export GOPATH="$HOME"/.local
 export CFLAGS="-Wno-parentheses -Wno-implicit-int"
-export PYTHONSTARTUP="$XDG_CONFIG_HOME"/pythonrc
+export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/init.py
 export PYTHONDONTWRITEBYTECODE=1
 
 export AURDEST="$XDG_RUNTIME_DIR"/pacaur
