@@ -4,41 +4,41 @@
 
 # Vim plugins
 [submodule "nvim/bundle/vim-pathogen"]
-	path = nvim/bundle/vim-pathogen
+	path = editor/nvim/bundle/vim-pathogen
 	url = git://github.com/tpope/vim-pathogen.git
 [submodule "nvim/bundle/vim-colors-solarized"]
-	path = nvim/bundle/vim-colors-solarized
+	path = editor/nvim/bundle/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule "nvim/bundle/fish-syntax"]
-	path = nvim/bundle/fish-syntax
+	path = editor/nvim/bundle/fish-syntax
 	url = git://github.com/dag/vim-fish.git
 [submodule "nvim/bundle/nerdtree"]
-	path = nvim/bundle/nerdtree
+	path = editor/nvim/bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
 [submodule "nvim/bundle/vim-nerdtree-tabs"]
-	path = nvim/bundle/vim-nerdtree-tabs
+	path = editor/nvim/bundle/vim-nerdtree-tabs
 	url = git://github.com/jistr/vim-nerdtree-tabs.git
 [submodule "nvim/bundle/syntastic"]
-	path = nvim/bundle/syntastic
+	path = editor/nvim/bundle/syntastic
 	url = git://github.com/scrooloose/syntastic.git
 [submodule "nvim/bundle/vim-git"]
-	path = nvim/bundle/vim-git
+	path = editor/nvim/bundle/vim-git
 	url = git://github.com/tpope/vim-git.git
 [submodule "nvim/bundle/securemodelines"]
 	path = .config/nvim/bundle/securemodelines
 	url = git://github.com/ciaranm/securemodelines.git
 [submodule "nvim/bundle/editorconfig-vim"]
-	path = nvim/bundle/editorconfig-vim
+	path = editor/nvim/bundle/editorconfig-vim
 	url = git://github.com/editorconfig/editorconfig-vim.git
 [submodule "nvim/bundle/incsearch.vim"]
-	path = nvim/bundle/incsearch.vim
+	path = editor/nvim/bundle/incsearch.vim
 	url = git://github.com/haya14busa/incsearch.vim.git
 [submodule "nvim/bundle/gundo.vim"]
-	path = nvim/bundle/gundo.vim
+	path = editor/nvim/bundle/gundo.vim
 	url = git://github.com/sjl/gundo.vim.git
 [submodule "nvim/bundle/rust.vim"]
-	path = nvim/bundle/rust.vim
+	path = editor/nvim/bundle/rust.vim
 	url = git://github.com/rust-lang/rust.vim.git
 [submodule "nvim/bundle/llvm.vim"]
-	path = nvim/bundle/llvm.vim
+	path = editor/nvim/bundle/llvm.vim
 	url = git://github.com/b1narykid/llvm.vim.git
