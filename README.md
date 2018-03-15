@@ -4,10 +4,10 @@
    Quick start
 --------------------------------------------------------------------------------
 
-Makefile uses [GNU Stow] to create program's config symlink in your `HOME`,
-`XDG_CONFIG_HOME` and `XDG_DATA_HOME/../bin`  directories.  E.g. running
-`make core` will create a symlink to `.profile` in `HOME`, fish config in
-`XDG_CONFIG_HOME` and (for some reason) also my git config.
+Makefile uses [GNU Stow] to create program's config symlink in your `$HOME`,
+`$XDG_CONFIG_HOME` and `$XDG_DATA_HOME/../bin`  directories.  E.g. running
+`make core` will create a symlink to `.profile` in `$HOME`, fish config in
+`$XDG_CONFIG_HOME`.
 
    Dependencies
 --------------------------------------------------------------------------------
