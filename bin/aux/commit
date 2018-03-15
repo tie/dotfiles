@@ -1,0 +1,2 @@
+#!/bin/dash
+exec curl -s https://whatthecommit.com/index.txt
