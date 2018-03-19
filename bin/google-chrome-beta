@@ -54,7 +54,17 @@ chrome="$XDG_RUNTIME_DIR"/chrome
 	 "extensions": { "theme": { "use_system": true } },
 	 "profile": {
 	  "name": "Ivan Trubach", "avatar_index": 12,
+	  "block_third_party_cookies": true,
+	  "content_settings": {
+	    "exceptions": {
+	      "cookies": {
+	        "[*.]shikimori.org,*": { "setting": 1 },
+	        "[*.]github.com,*": { "setting": 1 }
+	      }
+	    }
+	  },
 	  "default_content_setting_values": {
+	   "cookies": 2,
 	   "ppapi_broker": 2,
 	   "notifications": 2,
 	   "automatic_downloads": 2
