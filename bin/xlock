@@ -1,2 +1,2 @@
 #!/bin/dash
-exec i3lock -b -f -i XDG_CONFIG_HOME"/xorg/wallpaper.png
+exec i3lock -b -f -i "$XDG_CONFIG_HOME"/xorg/wallpaper.png
