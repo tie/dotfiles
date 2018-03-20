@@ -1,11 +1,12 @@
-#!/bin/dash
+#!/bin/bash
 
+root=/opt/google/chrome-beta
 chrome="$XDG_RUNTIME_DIR"/chrome
 (
 	user="$chrome"/user
 	cache="$chrome"/cache
 
-# create dir tree if needed
+# create dir tree
 	if test ! -d "$chrome"
 	then mkdir "$chrome"
 	fi
@@ -16,66 +17,20 @@ chrome="$XDG_RUNTIME_DIR"/chrome
 	then mkdir "$user"
 	fi
 
-# don't show me welcome windows
-	if test ! -f "$user"/'First Run'
-	then >"$user"/'First Run'
-	fi
-
-# write default config file
-#
-# finding JSON keys for options is a bit tricky:
-# 0. delete all chrome data (chrome/user and chrome/data directories)
-#    most modern systems mount tmpfs on XDG_RUNTIME_DIR anyway
-# 1. launch chrome, kill chrome, launch it again
-# 2. enable/disable option in GUI
-# 3. kill chrome (or, somehow, force syncing preferences to disk)
-# 4. $ json_pp >old <user/Default/Preferences
-# 5. launch chrome and disable/enable the same option
-# 6. kill chrome (to save prefs again)
-# 7. $ json_pp >new <user/Default/Preferences
-# 8. $ diff old new
-# Also, consider using the following options with `diff`:
-#   --unchanged-line-format="" --old-line-format="" --new-line-format="%dn %L"
-# This will add line numbers and hide everything except changed lines.
-#
-# After adding a few options, though, you will be familiar with pretty printed
-# Google Chrome preferences :]
-	if test ! -d "$user"/Default
-	then mkdir "$user/"Default
-	fi
-	if test ! -f "$user"/Default/Preferences
-	then sed "s/^\t//" >"$user"/Default/Preferences <<EOF
-	{
-	 "enable_do_not_track": true,
-	 "safebrowsing": { "enabled": false },
-	 "search": { "suggest_enabled": false },
-	 "net": { "network_prediction_options" : 2 },
-	 "alternate_error_pages": { "enabled": false },
-	 "extensions": { "theme": { "use_system": true } },
-	 "profile": {
-	  "name": "Ivan Trubach", "avatar_index": 12,
-	  "block_third_party_cookies": true,
-	  "content_settings": {
-	    "exceptions": {
-	      "cookies": {
-	        "[*.]shikimori.org,*": { "setting": 1 },
-	        "[*.]github.com,*": { "setting": 1 }
-	      }
-	    }
-	  },
-	  "default_content_setting_values": {
-	   "cookies": 2,
-	   "ppapi_broker": 2,
-	   "notifications": 2,
-	   "automatic_downloads": 2
-	  }
-	 }
-	}
-EOF
-	fi
+# write default preferences
+	exec chrome-mkconfig "$user"
 )
 
-exec /opt/google/chrome-beta/google-chrome-beta \
+export CHROME_VERSION_EXTRA=beta
+export GNOME_DISABLE_CRASH_DIALOG=SET_BY_GOOGLE_CHROME
+
+# always use chrome's libs
+if test -z "$LD_LIBRARY_PATH"
+then export LD_LIBRARY_PATH="$root":"$root"/lib
+else export LD_LIBRARY_PATH="$root":"$root"/lib:"$LD_LIBRARY_PATH"
+fi
+
+exec "$root"/chrome \
   --disk-cache-dir="$chrome"/cache \
   --user-data-dir="$chrome"/user \
   --enable-potentially-annoying-security-features \
@@ -96,4 +51,7 @@ exec /opt/google/chrome-beta/google-chrome-beta \
   --enable-quic \
   "$@"
 
+# References:
+# https://google.com/intl/en/chrome/browser/privacy/whitepaper.html
+# https://thesimplecomputer.info/the-private-life-of-chromium-browsers
 # https://github.com/chef-koch/chromium-hardening/blob/master/command%20line/cmd.txt

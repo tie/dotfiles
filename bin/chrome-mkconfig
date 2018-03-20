@@ -1,0 +1,65 @@
+#!/bin/dash
+
+if test "$#" != 1 -a -d "$1"
+then
+	echo "Oops, invalid arguments" >&2
+	exit 1
+fi
+
+# don't show me welcome windows
+if test ! -f "$1"/'First Run'
+then >"$1"/'First Run'
+fi
+
+# write default config file
+#
+# finding JSON keys for options is a bit tricky:
+# 0. clear chrome data
+# 1. launch chrome, kill chrome, launch it again
+# 2. enable/disable option in GUI
+# 3. kill chrome (or, somehow, force syncing preferences to disk)
+# 4. $ json_pp >old <user/Default/Preferences
+# 5. launch chrome and disable/enable the same option
+# 6. kill chrome (to save prefs again)
+# 7. $ json_pp >new <user/Default/Preferences
+# 8. $ diff old new
+# Also, consider using the following options with `diff`:
+#   --unchanged-line-format="" --old-line-format="" --new-line-format="%dn %L"
+# This will add line numbers and hide everything except changed lines.
+#
+# After adding a few options, though, you will be familiar with pretty printed
+# Google Chrome preferences :]
+if test ! -d "$1"/Default
+then mkdir "$1/"Default
+fi
+if test ! -f "$1"/Default/Preferences
+then cat >"$1"/Default/Preferences <<EOF
+{
+ "enable_do_not_track": true,
+ "safebrowsing": { "enabled": false },
+ "search": { "suggest_enabled": false },
+ "net": { "network_prediction_options" : 2 },
+ "alternate_error_pages": { "enabled": false },
+ "extensions": { "theme": { "use_system": true } },
+ "profile": {
+  "name": "Ivan Trubach", "avatar_index": 12,
+  "block_third_party_cookies": true,
+  "content_settings": {
+    "exceptions": {
+      "cookies": {
+        "[*.]shikimori.org,*": { "setting": 1 },
+        "[*.]github.com,*": { "setting": 1 }
+      }
+    }
+  },
+  "default_content_setting_values": {
+   "cookies": 2,
+   "ppapi_broker": 2,
+   "notifications": 2,
+   "automatic_downloads": 2
+  }
+ }
+}
+EOF
+fi
+
