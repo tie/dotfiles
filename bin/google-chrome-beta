@@ -30,6 +30,14 @@ then export LD_LIBRARY_PATH="$root":"$root"/lib
 else export LD_LIBRARY_PATH="$root":"$root"/lib:"$LD_LIBRARY_PATH"
 fi
 
+# see http://crbug.com/376567
+# note that we have bashisms below
+# TODO: replace with something POSIX-compatible
+# idk now how to do this in POSIX though
+exec </dev/null
+exec > >(exec cat)
+exec 2> >(exec cat >&2)
+
 exec "$root"/chrome \
   --disk-cache-dir="$chrome"/cache \
   --user-data-dir="$chrome"/user \
