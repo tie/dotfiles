@@ -1,4 +1,4 @@
-targets=core editor extra bin prefs
+bindir?=$(or ${GOBIN},${HOME}/bin)
 
 install: ${targets}
 
@@ -14,9 +14,9 @@ extra:
 	stow $@ -t "${XDG_CONFIG_HOME}"
 
 bin:
-	stow $@ -t ${XDG_DATA_HOME:%/share=%/bin}
+	stow $@ -t "${bindir}"
 
 prefs:
 	stow $@ -t "${XDG_CONFIG_HOME}"
 
-.PHONY: install ${targets}
+.PHONY: install core editor extra bin prefs

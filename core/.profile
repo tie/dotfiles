@@ -1,23 +1,22 @@
 #!/bin/dash
-export PATH=.:"$HOME"/.local/bin:"$PATH"
 
-# XDG variables
-export XDG_CONFIG_HOME="$HOME"/.config
-export  XDG_CACHE_HOME="$HOME"/.cache
-export   XDG_DATA_HOME="$HOME"/.local/share
+# XDG dirs
+export XDG_DOCUMENTS_DIR="$HOME"/doc
 
-# User programs
-export     PAGER=most
-export    EDITOR=nvim
-export   BROWSER=google-chrome-beta
+# Programs
+export PAGER=most
+export EDITOR=nvim
+export BROWSER=google-chrome-beta
+export AURDEST="$XDG_RUNTIME_DIR"/pacaur
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
-
 export XCURSOR_PATH="$XDG_CONFIG_HOME"/xorg
 
-# Compilers
-export GOPATH="$HOME"/.local
-export CFLAGS="-Wno-parentheses -Wno-implicit-int"
-export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/init.py
+# Compilers and interpreters
+# - Go
+export GOBIN="$HOME"/bin
+export GOPATH="$XDG_DOCUMENTS_DIR"/go
 export PYTHONDONTWRITEBYTECODE=1
+export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/init.py
+export CFLAGS="-Wno-parentheses -Wno-implicit-int"
 
-export AURDEST="$XDG_RUNTIME_DIR"/pacaur
+export PATH=.:"$GOBIN":"$PATH"
