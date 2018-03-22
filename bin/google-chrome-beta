@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/dash
 root=/opt/google/chrome-beta
 chrome="$XDG_RUNTIME_DIR"/chrome
 (
@@ -27,10 +27,27 @@ else export LD_LIBRARY_PATH="$root":"$root"/lib:"$LD_LIBRARY_PATH"
 fi
 
 # see http://crbug.com/376567
-# note that process substitution is bashism and a sole reason for #!/bin/bash
 exec </dev/null
-exec > >(exec cat)
-exec 2> >(exec cat >&2)
+# proxy stdout
+if test ! -e "$chrome"/stdout
+then mkfifo "$chrome"/stdout
+fi
+if test -p "$chrome"/stdout
+then
+	cat <"$chrome"/stdout &
+	exec >"$chrome"/stdout
+else exec >/dev/null
+fi
+# proxy stderr
+if test ! -e "$chrome"/stderr
+then mkfifo "$chrome"/stderr
+fi
+if test -p "$chrome"/stderr
+then
+	cat <"$chrome"/stderr >&2 &
+	exec 2>"$chrome"/stderr
+else exec 2>/dev/null
+fi
 
 CHROME_VERSION_EXTRA=beta \
 GNOME_DISABLE_CRASH_DIALOG=SET_BY_GOOGLE_CHROME \
