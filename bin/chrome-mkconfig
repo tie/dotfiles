@@ -1,65 +1,157 @@
 #!/bin/dash
+# References:
+# o Chromium sources:
+#   https://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/pref_names.cc
+# o Google Chrome Privacy Whitepaper:
+#   https://google.com/intl/en/chrome/browser/privacy/whitepaper.html
+# o "The Private Life of Chromium Browsers"
+#    -- comparison of Chromium, Chrome and Iron browsers:
+#    https://thesimplecomputer.info/the-private-life-of-chromium-browsers
+# o Contains other useful references in README:
+#   https://github.com/chef-koch/chromium-hardening
 
-if test "$#" != 1 -a -d "$1"
+if test "$#" = 1
 then
-	echo "Oops, invalid arguments" >&2
+	if test ! -d "$1"
+	then
+		echo "'$1' is not a directory" >&2
+		exit 2
+	fi
+else
+	echo "oops, invalid arguments" >&2
 	exit 1
 fi
 
-# don't show me welcome windows
+# Use full user name iff we can `cut` it from `getent` output
+if (command -v getent && command -v cut) 2>&1 >/dev/null </dev/null
+then name=`getent passwd "$USER" | cut -d ':' -f 5 | cut -d ',' -f 1`
+fi
+
+name="${name:-Default}"
+profile="${USER:-Default}"
+
+# don't show me your tutorials, promos, etc.
 if test ! -f "$1"/'First Run'
 then >"$1"/'First Run'
 fi
 
-# write default config file
-#
-# finding JSON keys for options is a bit tricky:
-# 0. clear chrome data
-# 1. launch chrome, kill chrome, launch it again
-# 2. enable/disable option in GUI
-# 3. kill chrome (or, somehow, force syncing preferences to disk)
-# 4. $ json_pp >old <user/Default/Preferences
-# 5. launch chrome and disable/enable the same option
-# 6. kill chrome (to save prefs again)
-# 7. $ json_pp >new <user/Default/Preferences
-# 8. $ diff old new
-# Also, consider using the following options with `diff`:
-#   --unchanged-line-format="" --old-line-format="" --new-line-format="%dn %L"
-# This will add line numbers and hide everything except changed lines.
-#
-# After adding a few options, though, you will be familiar with pretty printed
-# Google Chrome preferences :]
-if test ! -d "$1"/Default
-then mkdir "$1/"Default
+# write default profile preferences
+if test ! -d "$1"/"$profile"
+then mkdir "$1"/"$profile"
 fi
-if test ! -f "$1"/Default/Preferences
-then cat >"$1"/Default/Preferences <<EOF
+
+if test ! -f "$1"/"$profile"/Preferences
+then cat >"$1"/"$profile"/Preferences <<EOF
 {
+ "hide_web_store_icon": true,
  "enable_do_not_track": true,
+ "credentials_enable_service": false,
+ "credentials_enable_autosignin": false,
+ "gdata": { "disabled": true },
+ "autofill": { "enabled": false },
+ "translate": { "enabled": false },
  "safebrowsing": { "enabled": false },
  "search": { "suggest_enabled": false },
- "net": { "network_prediction_options" : 2 },
+ "homepage": "https://ddg.gg/tty",
+ "homepage_is_newtabpage": false,
+ "default_search_provider_data": {
+  "template_url_data": {
+   "keyword": "ddg.gg",
+   "short_name": "DuckDuckGo",
+   "url": "https://ddg.gg/lite?q={searchTerms}",
+   "new_tab_url": "https://ddg.gg/lite",
+   "favicon_url" : "https://ddg.gg/favicon.ico",
+   "suggestions_url": "https://ddg.gg/ac/?q={searchTerms}&type=list",
+   "alternate_urls": [
+    "https://ddg.gg/html?q={searchTerms}",
+    "https://ddg.gg/?q={searchTerms}"
+   ]
+  }
+ },
+ "net": { "network_prediction_options": 2 },
+ "download": { "prompt_for_download": true },
  "alternate_error_pages": { "enabled": false },
  "extensions": { "theme": { "use_system": true } },
+ "settings": { "labs": { "advanced_filesystem": false } },
+ "webkit": { "webprefs": { "encrypted_media_enabled": false } },
+ "browser": {
+  "show_home_button": true,
+  "speechinput_censor_results": false
+ },
  "profile": {
-  "name": "Ivan Trubach", "avatar_index": 12,
+  "name": "${name}", "avatar_index": 12,
   "block_third_party_cookies": true,
-  "content_settings": {
-    "exceptions": {
-      "cookies": {
-        "[*.]shikimori.org,*": { "setting": 1 },
-        "[*.]github.com,*": { "setting": 1 }
-      }
-    }
-  },
   "default_content_setting_values": {
    "cookies": 2,
    "ppapi_broker": 2,
    "notifications": 2,
+   "background_sync": 2,
    "automatic_downloads": 2
+  },
+  "content_settings": {
+    "exceptions": {
+      "cookies": {
+        "[*.]github.com,*": { "setting": 1 },
+        "[*.]shikimori.org,*": { "setting": 1 }
+      }
+    }
   }
  }
 }
 EOF
 fi
 
+# write default browser state
+if test ! -f "$1"/"Local State"
+then cat >"$1"/"Local State" <<EOF
+{
+ "profile": { "last_used": "${profile}" },
+
+ "cloud_print": { "enabled": false },
+ "background_mode": { "enabled": false },
+ "user_experience_metrics": { "reporting_enabled": false },
+ "user_experience_metrics_crash": { "reporting_enabled": false },
+ "browser": {
+  "web_app": {
+   "create_on_desktop": false,
+   "create_in_apps_menu": false,
+   "create_in_quick_launch_bar": false
+  },
+  "enabled_labs_experiments": [
+   "enable-quic@1",
+   "enable-mark-http-as@3",
+
+   "show-saved-copy@1",
+   "overlay-scrollbars@1",
+   "enable-tab-audio-muting",
+   "enable-scroll-prediction",
+   "omnibox-ui-show-suggestion-favicons@1",
+
+   "autoplay-policy@2",
+   "enable-site-per-process",
+   "enable-noscript-previews@1",
+   "disable-hyperlink-auditing",
+   "reduced-referrer-granularity",
+   "disallow-doc-written-script-loads@1",
+
+   "webxr@2",
+   "enable-webvr@0",
+   "webxr-orientation-sensor-device@2",
+
+   "enable-app-banners@2",
+   "enable-experimental-app-banners@2",
+   "enable-gamepad-extensions@2",
+   "enable-generic-sensor@2",
+   "enable-generic-sensor-extra-classes@2",
+   "enable-nostate-prefetch@5",
+   "enable-resource-prefetch@4",
+   "safe-search-url-reporting@2",
+   "enable-password-generation@2",
+   "enable-manual-password-generation@2",
+   "enable-html-base-username-detector@2",
+   "PasswordForceSaving@2"
+  ]
+ }
+}
+EOF
+fi

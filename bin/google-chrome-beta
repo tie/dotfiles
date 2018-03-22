@@ -1,28 +1,24 @@
 #!/bin/bash
-
 root=/opt/google/chrome-beta
 chrome="$XDG_RUNTIME_DIR"/chrome
 (
 	user="$chrome"/user
 	cache="$chrome"/cache
 
-# create dir tree
 	if test ! -d "$chrome"
 	then mkdir "$chrome"
 	fi
+
 	if test ! -d "$cache"
 	then mkdir "$cache"
 	fi
+
 	if test ! -d "$user"
 	then mkdir "$user"
 	fi
 
-# write default preferences
 	exec chrome-mkconfig "$user"
 )
-
-export CHROME_VERSION_EXTRA=beta
-export GNOME_DISABLE_CRASH_DIALOG=SET_BY_GOOGLE_CHROME
 
 # always use chrome's libs
 if test -z "$LD_LIBRARY_PATH"
@@ -31,35 +27,19 @@ else export LD_LIBRARY_PATH="$root":"$root"/lib:"$LD_LIBRARY_PATH"
 fi
 
 # see http://crbug.com/376567
-# note that we have bashisms below
-# TODO: replace with something POSIX-compatible
-# idk now how to do this in POSIX though
+# note that process substitution is bashism and a sole reason for #!/bin/bash
 exec </dev/null
 exec > >(exec cat)
 exec 2> >(exec cat >&2)
 
+CHROME_VERSION_EXTRA=beta \
+GNOME_DISABLE_CRASH_DIALOG=SET_BY_GOOGLE_CHROME \
 exec "$root"/chrome \
+  --enable-potentially-annoying-security-features \
+  --google-base-url='https://ddg.gg/lite/' \
   --disk-cache-dir="$chrome"/cache \
   --user-data-dir="$chrome"/user \
-  --enable-potentially-annoying-security-features \
-  --mark-non-secure-as=non-secure \
-  --autoplay-policy=user-gesture-required-for-cross-origin \
+  --show-cert-link \
   --disable-sync \
   --no-referrers \
-  --no-pings \
-  --site-per-process \
-  --enable-experimental-fullscreen-exit-ui \
-  --disable-password-generation \
-  --show-saved-copy=primary \
-  --google-base-url='https://ddg.gg/lite/' \
-  --enable-features=OverlayScrollbar,NoScriptPreviews --enable-tab-audio-muting \
-  --blink-settings=disallowFetchForDocWrittenScriptsInMainFrame=false \
-  --disable-features=AppBanners,ExperimentalAppBanners,AutofillCreditCardAblationExperiment,AutofillCreditCardLastUsedDateDisplay,AutofillSendBillingCustomerNumber,AutofillUpstreamSendDetectedValues,AutofillUpstreamSendPanFirstSix,DesktopIOSPromotion,EnableUsernameCorrection,GamepadExtensions,GenericSensor,GenericSensorExtraClasses,NewUsbBackend,NoStatePrefetch,OpenVR,SafeSearchUrlReporting,SpeculativeResourcePrefetching,enable-manual-password-generation,enable-password-force-saving \
-  --show-cert-link \
-  --enable-quic \
   "$@"
-
-# References:
-# https://google.com/intl/en/chrome/browser/privacy/whitepaper.html
-# https://thesimplecomputer.info/the-private-life-of-chromium-browsers
-# https://github.com/chef-koch/chromium-hardening/blob/master/command%20line/cmd.txt
