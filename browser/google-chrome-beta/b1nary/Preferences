@@ -1,0 +1,57 @@
+{
+ "hide_web_store_icon": true,
+ "enable_do_not_track": true,
+ "credentials_enable_service": false,
+ "credentials_enable_autosignin": false,
+ "gdata": { "disabled": true },
+ "autofill": { "enabled": false },
+ "translate": { "enabled": false },
+ "safebrowsing": { "enabled": false },
+ "search": { "suggest_enabled": false },
+ "session": { "restore_on_startup": 1 },
+ "homepage": "https://ddg.gg/tty",
+ "homepage_is_newtabpage": false,
+ "default_search_provider_data": {
+  "template_url_data": {
+   "keyword": "ddg.gg",
+   "short_name": "DuckDuckGo",
+   "url": "https://ddg.gg/lite?q={searchTerms}",
+   "new_tab_url": "https://ddg.gg/lite",
+   "favicon_url" : "https://ddg.gg/favicon.ico",
+   "suggestions_url": "https://ddg.gg/ac/?q={searchTerms}&type=list",
+   "alternate_urls": [
+    "https://ddg.gg/html?q={searchTerms}",
+    "https://ddg.gg/?q={searchTerms}"
+   ]
+  }
+ },
+ "net": { "network_prediction_options": 2 },
+ "download": { "prompt_for_download": true },
+ "alternate_error_pages": { "enabled": false },
+ "extensions": { "theme": { "use_system": true } },
+ "settings": { "labs": { "advanced_filesystem": false } },
+ "webkit": { "webprefs": { "encrypted_media_enabled": false } },
+ "browser": {
+  "show_home_button": true,
+  "speechinput_censor_results": false
+ },
+ "profile": {
+  "name": "Ivan Trubach", "avatar_index": 12,
+  "block_third_party_cookies": true,
+  "default_content_setting_values": {
+   "cookies": 2,
+   "ppapi_broker": 2,
+   "notifications": 2,
+   "background_sync": 2,
+   "automatic_downloads": 2
+  },
+  "content_settings": {
+    "exceptions": {
+      "cookies": {
+        "[*.]github.com,*": { "setting": 1 },
+        "[*.]shikimori.org,*": { "setting": 1 }
+      }
+    }
+  }
+ }
+}

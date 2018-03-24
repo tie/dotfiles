@@ -1,0 +1,49 @@
+{
+ "profile": { "last_used": "b1nary" },
+
+ "cloud_print": { "enabled": false },
+ "background_mode": { "enabled": false },
+ "user_experience_metrics": { "reporting_enabled": false },
+ "user_experience_metrics_crash": { "reporting_enabled": false },
+ "browser": {
+  "web_app": {
+   "create_on_desktop": false,
+   "create_in_apps_menu": false,
+   "create_in_quick_launch_bar": false
+  },
+  "enabled_labs_experiments": [
+   "enable-quic@1",
+   "enable-mark-http-as@3",
+
+   "show-saved-copy@1",
+   "overlay-scrollbars@1",
+   "enable-tab-audio-muting",
+   "enable-scroll-prediction",
+   "omnibox-ui-show-suggestion-favicons@1",
+
+   "autoplay-policy@2",
+   "enable-site-per-process",
+   "enable-noscript-previews@1",
+   "disable-hyperlink-auditing",
+   "reduced-referrer-granularity",
+   "disallow-doc-written-script-loads@1",
+
+   "webxr@2",
+   "enable-webvr@0",
+   "webxr-orientation-sensor-device@2",
+
+   "enable-app-banners@2",
+   "enable-experimental-app-banners@2",
+   "enable-gamepad-extensions@2",
+   "enable-generic-sensor@2",
+   "enable-generic-sensor-extra-classes@2",
+   "enable-nostate-prefetch@5",
+   "enable-resource-prefetch@4",
+   "safe-search-url-reporting@2",
+   "enable-password-generation@2",
+   "enable-manual-password-generation@2",
+   "enable-html-base-username-detector@2",
+   "PasswordForceSaving@2"
+  ]
+ }
+}

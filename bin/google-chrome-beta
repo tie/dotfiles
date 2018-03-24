@@ -1,24 +1,15 @@
 #!/bin/dash
+program="${0##*/}"
 root=/opt/google/chrome-beta
-chrome="$XDG_RUNTIME_DIR"/chrome
-(
-	user="$chrome"/user
-	cache="$chrome"/cache
+chrome="$XDG_RUNTIME_DIR"/"$program"
 
-	if test ! -d "$chrome"
-	then mkdir "$chrome"
-	fi
+if test ! -d "$chrome"
+then mkdir "$chrome"
+fi
 
-	if test ! -d "$cache"
-	then mkdir "$cache"
-	fi
-
-	if test ! -d "$user"
-	then mkdir "$user"
-	fi
-
-	exec chrome-mkconfig "$user"
-)
+if test ! -d "$chrome"/user
+then cp -aL "$XDG_CONFIG_HOME"/"$program" "$chrome"/user
+fi
 
 # always use chrome's libs
 if test -z "$LD_LIBRARY_PATH"

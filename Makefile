@@ -1,6 +1,6 @@
 bindir?=$(or ${GOBIN},${HOME}/bin)
 
-install: ${targets}
+install: core editor extra browser bin prefs
 
 core:
 	stow $@ -t "${HOME}" --ignore=fish\|python\|git
@@ -13,10 +13,13 @@ editor:
 extra:
 	stow $@ -t "${XDG_CONFIG_HOME}"
 
+browser:
+	stow $@ -t "${XDG_CONFIG_HOME}"
+
 bin:
 	stow $@ -t "${bindir}"
 
 prefs:
 	stow $@ -t "${XDG_CONFIG_HOME}"
 
-.PHONY: install core editor extra bin prefs
+.PHONY: install core editor extra browser bin prefs
