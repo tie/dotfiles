@@ -39,6 +39,7 @@
   "name": "Ivan Trubach", "avatar_index": 12,
   "block_third_party_cookies": true,
   "default_content_setting_values": {
+   "images": 2,
    "cookies": 2,
    "ppapi_broker": 2,
    "notifications": 2,
@@ -47,6 +48,9 @@
   },
   "content_settings": {
     "exceptions": {
+      "images": {
+        "[*.]shikimori.org,*": { "setting": 1 }
+      },
       "cookies": {
         "[*.]github.com,*": { "setting": 1 },
         "[*.]shikimori.org,*": { "setting": 1 }
