@@ -40,7 +40,7 @@ prompt = def { font              = "xft:DejaVu Sans Mono:size=9"
              , promptBorderWidth = 1
              }
 
-defaults = def { terminal           = "uxterm"
+defaults = def { terminal           = "alacritty"
                , modMask            = mod4Mask
                  -- FIXME: redefine keys, layout and events handlers
                  --        because we do not want to depend on `def`
