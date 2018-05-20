@@ -47,6 +47,7 @@ exec "$root"/chrome \
   --google-base-url='https://ddg.gg/lite/' \
   --disk-cache-dir="$chrome"/cache \
   --user-data-dir="$chrome"/user \
+  --disable-remote-fonts \
   --show-cert-link \
   --disable-sync \
   --no-referrers \
