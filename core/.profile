@@ -10,6 +10,7 @@ export EDITOR=nvim
 export BROWSER=google-chrome-beta
 export AURDEST="$XDG_RUNTIME_DIR"/pacaur
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
+export HUB_CONFIG="$XDG_CONFIG_HOME"/hub
 export XCURSOR_PATH="$XDG_CONFIG_HOME"/xorg
 
 # Compilers and interpreters
