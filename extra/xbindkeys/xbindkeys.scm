@@ -1,5 +1,4 @@
-;; restart xmonad
-(xbindkey '(mod4 q) "xmonad --restart")
+(xbindkey '(shift mod4 Return) "alacritty")
 
 (xbindkey '(XF86AudioLowerVolume) "amixer set Master 1%-")
 (xbindkey '(XF86AudioRaiseVolume) "amixer set Master 1%+")
