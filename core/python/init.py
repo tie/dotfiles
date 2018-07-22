@@ -1,9 +1,15 @@
-import sys
+#!/bin/python
+def disableHistoryFile():
+  import sys
+  if hasattr(sys, '__interactivehook__'):
+    interactivehook = sys.__interactivehook__
 
-oldhook = getattr(sys, '__interactivehook__', None)
-def newhook():
-  import readline, atexit
-  oldhook()
-  atexit.unregister(readline.write_history_file)
-if oldhook:
-  sys.__interactivehook__ = newhook
+    def newhook():
+      import readline, atexit
+      interactivehook()
+      atexit.unregister(readline.write_history_file)
+
+    sys.__interactivehook__ = newhook
+
+disableHistoryFile()
+del disableHistoryFile
