@@ -33,6 +33,7 @@
  "webkit": { "webprefs": { "encrypted_media_enabled": false } },
  "browser": {
   "show_home_button": true,
+  "custom_chrome_frame": false,
   "speechinput_censor_results": false
  },
  "profile": {
