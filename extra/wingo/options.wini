@@ -1,0 +1,16 @@
+[Options]
+workspaces := work browser music
+
+default_layout := Floating
+
+focus_follows_mouse := yes
+focus_follows_mouse_focus := yes
+focus_follows_mouse_raise := no
+focus_follows_mouse_startup_focus := yes
+
+show_popup_errors := yes
+show_popup_fyi := yes
+popup_time := 500
+
+confirm := Return
+cancel := Escape

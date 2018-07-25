@@ -1,0 +1,62 @@
+[Global]
+Mod4-r := Shell (Input "Command:")
+Mod4-e := WingoExec (Input "Wingo command:")
+Mod4-Shift-h := WingoHelp (Input "Wingo command name:")
+
+Mod4-d := Message (Shell "date")
+Mod4-Shift-return := Shell "alacritty"
+
+XF86AudioLowerVolume := Shell "amixer set Master 1%-"
+XF86AudioRaiseVolume := Shell "amixer set Master 1%+"
+
+XF86MonBrightnessUp := Shell "xbacklight -inc 1 -time 0 -steps 1"
+XF86MonBrightnessDown := Shell "xbacklight -dec 1 -time 0 -steps 1"
+
+XF86KbdBrightnessUp := Shell "kbdlight up 1"
+XF86KbdBrightnessDown := Shell "kbdlight down 1"
+
+Mod4-q := Restart
+Mod4-Shift-q := Quit
+Mod4-Shift-c := Close (GetActive)
+
+Mod4-f := ToggleMaximize (GetActive)
+Mod4-t := ToggleFloating (GetActive)
+Mod4-s := ToggleSticky (GetActive)
+Mod4-m := ToggleIconify (GetActive)
+
+Mod4-b := FrameNada (GetActive)
+Mod4-v := FrameFull (GetActive)
+
+Mod4-a := AutoTile (GetWorkspace)
+Mod4-u := AutoUntile (GetWorkspace)
+Mod4-z := AutoCycle (GetWorkspace)
+Mod4-Shift-l := SetLayout (GetWorkspace) (Input "Layout name:")
+
+Mod4-BackSpace := RemoveWorkspace (GetWorkspace)
+Mod4-n := Workspace (AddWorkspace (Input "New workspace name:"))
+
+Mod4-left := Workspace (GetWorkspacePrev)
+Mod4-right := Workspace (GetWorkspaceNext)
+Mod4-Shift-left := WorkspaceWithClient (GetWorkspacePrev) (GetActive)
+Mod4-Shift-right := WorkspaceWithClient (GetWorkspaceNext) (GetActive)
+
+Mod4-w := WorkspaceGreedy (SelectWorkspace "Prefix")
+Mod4-Shift-w := WorkspaceGreedyWithClient (SelectWorkspace "Prefix") (GetActive)
+
+Mod4-Tab := CycleClientNext "yes" "no" "yes"
+Mod4-Shift-Tab := CycleClientPrev "yes" "no" "yes"
+
+Mod4-space := FocusRaise (SelectClient "Any" "no" "no" "yes")
+
+Mod1-h := AutoResizeMaster (GetWorkspace) -0.02
+Mod1-l := AutoResizeMaster (GetWorkspace) 0.02
+Mod1-b := AutoResizeWindow (GetWorkspace) -0.02
+Mod1-n := AutoResizeWindow (GetWorkspace) 0.02
+Mod1-k := AutoNext (GetWorkspace)
+Mod1-j := AutoPrev (GetWorkspace)
+Mod1-Shift-k := AutoSwitchNext (GetWorkspace)
+Mod1-Shift-j := AutoSwitchPrev (GetWorkspace)
+Mod1-m := AutoMaster (GetWorkspace)
+Mod1-Shift-return := AutoMakeMaster (GetWorkspace)
+Mod1-comma := AutoMastersFewer (GetWorkspace)
+Mod1-period := AutoMastersMore (GetWorkspace)

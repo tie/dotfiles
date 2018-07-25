@@ -1,0 +1,64 @@
+# If don't have HiDPI display, divide all decimal values by 2.
+
+$THIN_COLOR := 0x585a5d
+
+[Full]
+font_size := 32
+a_font_color := 0xffffff
+i_font_color := 0x000000
+
+title_size := 54
+a_title_color := 0xd66b00 0xff9123
+i_title_color := 0xffffff
+# gradient
+
+border_size := 8
+a_border_color := $THIN_COLOR
+i_border_color := $THIN_COLOR
+
+a_close_color := 0xffffff
+i_close_color := 0x000000
+
+a_maximize_color := 0xffffff
+i_maximize_color := 0x000000
+
+a_minimize_color := 0xffffff
+i_minimize_color := 0x000000
+
+
+[Borders]
+border_size := 8
+
+a_thin_color := $THIN_COLOR
+i_thin_color := $THIN_COLOR
+
+a_border_color := 0xff7f00
+i_border_color := 0xdfdcdf
+# gradient
+
+
+[Slim]
+border_size := 2
+a_border_color := 0x000000
+i_border_color := 0x000000
+
+
+[Prompt]
+bg_color := 0x8e8e8e
+border_color := 0x585a5d
+border_size := 16
+padding := 30
+
+font_size := 34
+font_color := 0xffffff
+
+select_active_color := 0x4c4c4c
+select_active_bg_color := 0xffffff
+
+select_group_bg_color := 0x8e8e8e
+select_group_font_size := 50
+select_group_font_color := 0xffffff
+
+cycle_icon_size := 128
+cycle_icon_border_size := 16
+cycle_icon_transparency := 10
