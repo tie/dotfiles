@@ -18,9 +18,7 @@ Makefile uses [GNU Stow] to create program's config symlink in your `$HOME`,
 - [MOST](https://jedsoft.org/most) (pager)
 - [Xorg](https://x.org) (X11) (TODO: wayland)
 - [XBindKeys](http://nongnu.org/xbindkeys)
-- [xmonad](https://xmonad.org) (WM) (TODO: waymonad is good, but I was not able
-                                           to statically link with dependencies)
-- [xmobar](http://projects.haskell.org/xmobar)
+- [Wingo](https://github.com/b1narykid/wingo) (WM)
 - [Redshift](https://jonls.dk/redshift)
 - [NeoVim](https://neovim.io) (text editor)
 - [Ponysay](https://erkin.co/ponysay) (TODO: replace with `cowsay | lolcat`)
