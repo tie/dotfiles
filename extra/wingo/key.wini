@@ -6,15 +6,6 @@ Mod4-Shift-h := WingoHelp (Input "Wingo command name:")
 Mod4-d := Message (Shell "date")
 Mod4-Shift-return := Shell "alacritty"
 
-XF86AudioLowerVolume := Shell "amixer set Master 1%-"
-XF86AudioRaiseVolume := Shell "amixer set Master 1%+"
-
-XF86MonBrightnessUp := Shell "xbacklight -inc 1 -time 0 -steps 1"
-XF86MonBrightnessDown := Shell "xbacklight -dec 1 -time 0 -steps 1"
-
-XF86KbdBrightnessUp := Shell "kbdlight up 1"
-XF86KbdBrightnessDown := Shell "kbdlight down 1"
-
 Mod4-q := Restart
 Mod4-Shift-q := Quit
 Mod4-Shift-c := Close (GetActive)

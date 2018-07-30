@@ -39,9 +39,10 @@ TODO: remove unused fonts
 
 #### References
 - [Why the Keyboard?][1]
+- [Keyboard v. Mouse][2]
 
 [1]: https://github.com/noctuid/dotfiles/blob/master/README.org#why-the-keyboard
-
+[2]: https://danluu.com/keyboard-v-mouse
 
 [GNU Stow]: https://www.gnu.org/software/stow
 [NetSurf]: https://www.netsurf-browser.org
