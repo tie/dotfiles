@@ -21,6 +21,9 @@
    "enable-scroll-prediction",
    "omnibox-ui-show-suggestion-favicons@1",
 
+   "top-chrome-md@5",
+   "secondary-ui-md@1",
+
    "autoplay-policy@2",
    "enable-site-per-process",
    "enable-noscript-previews@1",
