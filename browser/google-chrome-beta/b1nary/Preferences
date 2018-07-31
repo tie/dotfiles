@@ -1,5 +1,7 @@
 {
  "hide_web_store_icon": true,
+ "enable_a_ping": false,
+ "enable_referrers": false,
  "enable_do_not_track": true,
  "credentials_enable_service": false,
  "credentials_enable_autosignin": false,

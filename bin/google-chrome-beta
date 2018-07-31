@@ -50,5 +50,4 @@ exec "$root"/chrome \
   --disable-remote-fonts \
   --show-cert-link \
   --disable-sync \
-  --no-referrers \
   "$@"
