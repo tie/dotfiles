@@ -1,0 +1,73 @@
+{
+ "version": 1,
+ "roots": {
+  "other": {},
+  "bookmark_bar": {
+   "type": "folder", "name": "",
+   "children": [
+    {
+     "type": "folder", "name": "Onion",
+     "children": [
+      {
+       "type": "url", "url": "http://hss3uro2hsxfogfq.onion",
+       "name": "not Evil"
+      },
+      {
+       "type": "url", "url": "http://xmh57jrzrnw6insl.onion",
+       "name": "TORCH"
+      },
+      {
+       "type": "url", "url": "https://3g2upl4pq6kufc4m.onion",
+       "name": "DuckDuckGo"
+      },
+      {
+       "type": "url", "url": "http://zqktlwi4fecvo6ri.onion/wiki/index.php/Main_Page",
+       "name": "The Hidden Wiki"
+      },
+      {
+       "type": "url", "url": "http://torlinksd6pdnihy.onion",
+       "name": "TorLinks"
+      },
+      {
+       "type": "url", "url": "http://pyl7a4ccwgpxm6rd.onion/w/index.php/Main_Page",
+       "name": "Code:Green"
+      },
+      {
+       "type": "url", "url": "http://archivecaslytosk.onion",
+       "name": "Webpage archive"
+      }
+     ]
+    },
+    {
+     "type": "folder", "name": "Music",
+     "children": [
+      {
+       "type": "url", "url": "https://youtu.be/QKjk9SJgFR4",
+       "name": "Re:Zero Main Soundtrack - Epic & Emotional [Full Album]"
+      },
+      {
+       "type": "url", "url": "https://youtu.be/_pWyTkDVYD0",
+       "name": "Re:Zero kara Hajimeru Isekai Seikatsu OST - Best Soundtracks of Re:Zero"
+      },
+      {
+       "type": "url", "url": "https://youtu.be/611k184Ia3E",
+       "name": "Overlord Season 3 OP / Opening Full - \"VORACITY\" by MYTH & ROID"
+      },
+      {
+       "type": "url", "url": "https://youtu.be/gN24W_psMpE",
+       "name": "Aimer - Ninelie"
+      },
+      {
+       "type": "url", "url": "https://youtu.be/XeI8E20ZUE4",
+       "name": "Aimer - Brave Shine"
+      },
+      {
+       "type": "url", "url": "https://youtu.be/QQzJ0IpBrWw",
+       "name": "「STRAIGHT BET」 Full ／ MYTH & ROID 『Re:ゼロ』Lyrics"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}
