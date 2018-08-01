@@ -66,6 +66,61 @@
        "name": "「STRAIGHT BET」 Full ／ MYTH & ROID 『Re:ゼロ』Lyrics"
       }
      ]
+    },
+    {
+     "type": "folder", "name": "Scripts",
+     "children": [
+      {
+       "type": "url", "url": "javascript:
+       (function() {
+        'use strict';
+        let counter = {};
+        for(let e of document.getElementsByTagName('*')) {
+         if(e.tagName && e.className) {
+          let k = e.tagName + '.' + e.className;
+          counter[k] = counter[k] ? counter[k] + 1 : 1;
+         }
+        }
+        let b = [];
+        for(let k in counter) {
+         b.push([k, counter[k]]);
+        }
+        b.sort();
+
+        let d = open().document;
+        d.write('<!doctype html>');
+        d.write('<table border=1>');
+        d.write('<thead>');
+        d.write( '<tr>');
+        d.write(  '<th>');
+        d.write(  '<th>tag');
+        d.write(  '<th>class');
+        for(let stat of b) {
+         d.write('<tr>');
+         d.write( '<td>' + stat[1]);
+         d.write(' <td>' + stat[0].split('.').join('<td>'));
+        }
+        d.write('</table>');
+        d.close();
+       })()",
+       "name": "Lists classes used in the document"
+      },
+      {
+       "type": "url", "url": "javascript:
+       (function() {
+         'use strict';
+         switch(document.designMode) {
+         case 'on':
+          document.designMode = 'off';
+          break;
+         case 'off':
+          document.designMode = 'on';
+          break;
+         }
+       })()",
+       "name": "Toggle document.designMode"
+      }
+     ]
     }
    ]
   }
