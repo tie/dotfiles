@@ -44,6 +44,8 @@ if test ! -f "$1"/"$profile"/Preferences
 then cat >"$1"/"$profile"/Preferences <<EOF
 {
  "hide_web_store_icon": true,
+ "enable_a_ping": false,
+ "enable_referrers": false,
  "enable_do_not_track": true,
  "credentials_enable_service": false,
  "credentials_enable_autosignin": false,
@@ -83,6 +85,7 @@ then cat >"$1"/"$profile"/Preferences <<EOF
   "name": "${name}", "avatar_index": 12,
   "block_third_party_cookies": true,
   "default_content_setting_values": {
+   "images": 2,
    "cookies": 2,
    "ppapi_broker": 2,
    "notifications": 2,
@@ -91,6 +94,9 @@ then cat >"$1"/"$profile"/Preferences <<EOF
   },
   "content_settings": {
     "exceptions": {
+      "images": {
+        "[*.]shikimori.org,*": { "setting": 1 }
+      },
       "cookies": {
         "[*.]github.com,*": { "setting": 1 },
         "[*.]shikimori.org,*": { "setting": 1 }
@@ -127,6 +133,9 @@ then cat >"$1"/"Local State" <<EOF
    "enable-tab-audio-muting",
    "enable-scroll-prediction",
    "omnibox-ui-show-suggestion-favicons@1",
+
+   "top-chrome-md@5",
+   "secondary-ui-md@1",
 
    "autoplay-policy@2",
    "enable-site-per-process",
