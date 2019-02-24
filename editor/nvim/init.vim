@@ -19,10 +19,8 @@ set guicursor+=i:ver25
 set guicursor+=r-cr:hor20
 set guicursor+=o:blinkwait300-blinkon200-blinkoff150
 
-" Switch syntax highlighting on, when the terminal has colors
-if &t_Co > 2 || has("gui_running")
-	syntax on
-endif
+" Disable syntax highlight
+syntax off
 
 " Set color scheme
 colorscheme solarized
