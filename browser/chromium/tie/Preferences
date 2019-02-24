@@ -5,6 +5,8 @@
  "enable_do_not_track": true,
  "credentials_enable_service": false,
  "credentials_enable_autosignin": false,
+ "signin": { "allowed": false, "allowed_on_next_startup": false },
+ "payments": { "can_make_payment_enabled": false },
  "gdata": { "disabled": true },
  "autofill": { "enabled": false },
  "translate": { "enabled": false },
@@ -19,7 +21,7 @@
    "short_name": "DuckDuckGo",
    "url": "https://ddg.gg/lite?q={searchTerms}",
    "new_tab_url": "https://ddg.gg/lite",
-   "favicon_url" : "https://ddg.gg/favicon.ico",
+   "favicon_url": "https://ddg.gg/favicon.ico",
    "suggestions_url": "https://ddg.gg/ac/?q={searchTerms}&type=list",
    "alternate_urls": [
     "https://ddg.gg/html?q={searchTerms}",
@@ -30,12 +32,13 @@
  "net": { "network_prediction_options": 2 },
  "download": { "prompt_for_download": true },
  "alternate_error_pages": { "enabled": false },
- "extensions": { "theme": { "use_system": true } },
+ "extensions": { "theme": { "use_system": false } },
  "settings": { "labs": { "advanced_filesystem": false } },
  "webkit": { "webprefs": { "encrypted_media_enabled": false } },
  "browser": {
-  "show_home_button": true,
+  "default_browser_infobar_last_declined": "18446744073709551615",
   "custom_chrome_frame": false,
+  "show_home_button": true,
   "speechinput_censor_results": false
  },
  "profile": {
@@ -47,6 +50,8 @@
    "ppapi_broker": 2,
    "notifications": 2,
    "background_sync": 2,
+   "payment_handler": 2,
+   "protocol_handler": 2,
    "automatic_downloads": 2
   },
   "content_settings": {

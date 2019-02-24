@@ -23,10 +23,8 @@ Makefile uses [GNU Stow] to create program's config symlink in your `$HOME`,
 - [NeoVim](https://neovim.io) (text editor)
 - [Ponysay](https://erkin.co/ponysay) (TODO: replace with `cowsay | lolcat`)
 - [EditorConfig](https://editorconfig.org)
-
-I also use [Google Chrome] from [aur/google-chrome-beta], but I'm looking
-forward to migrating to any other free (and libre) alternative like [NetSurf],
-which already has all features I need, but it is currently under development.
+- [Chromium](https://chromium.org) (everything else)
+  Patches from [ungoogled-chromium](https://github.com/Eloston/ungoogled-chromium)
 
 ### Fonts
 - [GNU Unifont] — for terminals and GUI ([aur/ttf-unifont])
@@ -45,10 +43,8 @@ TODO: remove unused fonts
 [2]: https://danluu.com/keyboard-v-mouse
 
 [GNU Stow]: https://www.gnu.org/software/stow
-[NetSurf]: https://www.netsurf-browser.org
 
-[Google Chrome]: https://www.google.com/chrome
-[aur/google-chrome-beta]: https://aur.archlinux.org/packages/google-chrome-beta
+[ungoogled-chromium]: https://github.com/Eloston/ungoogled-chromium
 
 [GNU Unifont]: http://unifoundry.com/unifont.html
 [Noto]: https://www.google.com/get/noto

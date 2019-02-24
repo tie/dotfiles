@@ -1,6 +1,6 @@
-#!/bin/dash
+#!/bin/dash -e
 program="${0##*/}"
-root=/opt/google/chrome-beta
+root=/opt/"$program"
 chrome="$XDG_RUNTIME_DIR"/"$program"
 
 if test ! -d "$chrome"
@@ -9,12 +9,6 @@ fi
 
 if test ! -d "$chrome"/user
 then cp -aL "$XDG_CONFIG_HOME"/"$program" "$chrome"/user
-fi
-
-# always use chrome's libs
-if test -z "$LD_LIBRARY_PATH"
-then export LD_LIBRARY_PATH="$root":"$root"/lib
-else export LD_LIBRARY_PATH="$root":"$root"/lib:"$LD_LIBRARY_PATH"
 fi
 
 # see http://crbug.com/376567
@@ -40,11 +34,14 @@ then
 else exec 2>/dev/null
 fi
 
-CHROME_VERSION_EXTRA=beta \
-GNOME_DISABLE_CRASH_DIALOG=SET_BY_GOOGLE_CHROME \
-exec "$root"/chrome \
+# always use chrome's libs
+if test -z "$LD_LIBRARY_PATH"
+then export LD_LIBRARY_PATH="$root":"$root"/lib
+else export LD_LIBRARY_PATH="$root":"$root"/lib:"$LD_LIBRARY_PATH"
+fi
+
+exec "$root"/"$program" \
   --enable-potentially-annoying-security-features \
-  --google-base-url='https://ddg.gg/lite/' \
   --disk-cache-dir="$chrome"/cache \
   --user-data-dir="$chrome"/user \
   --disable-remote-fonts \
