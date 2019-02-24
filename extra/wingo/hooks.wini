@@ -1,7 +1,7 @@
 [Autostart]
 match := True
 startup := Shell "xbindkeys -fg ${XDG_CONFIG_HOME}/xbindkeys.scm"
-startup := Shell "xrdb -DSOLARIZED_DARK -merge ${XDG_CONFIG_HOME}/xorg/db"
+startup := Shell "xrdb -nocpp -merge ${XDG_CONFIG_HOME}/xorg/db"
 startup := Shell "xsetroot -cursor_name left_ptr"
 startup := Shell "xsetroot -solid #fffeeb"
 startup := Shell "xset r rate 200 80"
