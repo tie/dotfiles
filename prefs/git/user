@@ -1,10 +1,19 @@
 [user]
   name = Ivan Trubach
   email = mr.trubach@icloud.com
-  signingkey = Ivan Trubach <mr.trubach@icloud.com>
 
 [commit]
-  gpgsign = true
+  gpgSign = true
+
+[push]
+  gpgSign = if-asked
+
+[tag]
+  forceSignAnnotated = true
+
+[log]
+  decorate = full
+  showSignature = true
 
 [branch]
   autosetuprebase = always
