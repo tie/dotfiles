@@ -25,9 +25,8 @@ prefs:
 
 tools:
 	#go get -u github.com/as/torgo
+	go get -u github.com/github/hub
 	go get -u github.com/driusan/dgit
-	go get -u github.com/cjbassi/gotop
-	go get -u github.com/b1narykid/wingo
 	go get -u github.com/NeowayLabs/nash/cmd/...
 	go get -u honnef.co/go/tools/cmd/staticcheck
 	go get -u honnef.co/go/tools/cmd/keyify
