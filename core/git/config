@@ -13,3 +13,4 @@
 
 [pager]
   stat = false
+  stash = false
