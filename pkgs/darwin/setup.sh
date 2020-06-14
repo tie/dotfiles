@@ -47,3 +47,8 @@ if ! [ -d "$HOME"/Applications/ScanTailor.app ]; then
 	echo "Installing ScanTailor"
 	(. pkgs/darwin/scantailor/setup.sh)
 fi
+
+if ! [ -d "$HOME"/Applications/Skim.app ]; then
+	echo "Installing Skim"
+	(. pkgs/darwin/skim/setup.sh)
+fi
