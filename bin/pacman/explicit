@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh -eu
 # List explicitely installed packages
 pacman -Qei | awk '/^Name/ { name=$3 } /^Groups/ {
 	if($3 != "base" && $3 != "base-devel" && $3 != "xorg" && $3 != "xorg-drivers")

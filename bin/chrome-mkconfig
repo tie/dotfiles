@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh -eu
 # References:
 # o Chromium sources:
 #   https://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/pref_names.cc
@@ -10,10 +10,8 @@
 # o Contains other useful references in README:
 #   https://github.com/chef-koch/chromium-hardening
 
-if test "$#" = 1
-then
-	if test ! -d "$1"
-	then
+if test "$#" = 1; then
+	if test ! -d "$1"; then
 		echo "'$1' is not a directory" >&2
 		exit 2
 	fi
@@ -23,25 +21,25 @@ else
 fi
 
 # Use full user name iff we can `cut` it from `getent` output
-if (command -v getent && command -v cut) 2>&1 >/dev/null </dev/null
-then name=`getent passwd "$USER" | cut -d ':' -f 5 | cut -d ',' -f 1`
+if (test -n "${USER+x}" && command -v getent && command -v cut) 2>&1 >/dev/null </dev/null; then
+	name=$(getent passwd "$USER" | cut -d ':' -f 5 | cut -d ',' -f 1)
 fi
 
 name="${name:-Default}"
 profile="${USER:-Default}"
 
 # don't show me your tutorials, promos, etc.
-if test ! -f "$1"/'First Run'
-then >"$1"/'First Run'
+if test ! -f "$1"/'First Run'; then
+	: >"$1"/'First Run'
 fi
 
 # write default profile preferences
-if test ! -d "$1"/"$profile"
-then mkdir "$1"/"$profile"
+if test ! -d "$1"/"$profile"; then
+	mkdir "$1"/"$profile"
 fi
 
-if test ! -f "$1"/"$profile"/Preferences
-then cat >"$1"/"$profile"/Preferences <<EOF
+if test ! -f "$1"/"$profile"/Preferences; then
+	cat >"$1"/"$profile"/Preferences <<EOF
 {
  "hide_web_store_icon": true,
  "enable_a_ping": false,
@@ -115,8 +113,8 @@ EOF
 fi
 
 # write default browser state
-if test ! -f "$1"/"Local State"
-then cat >"$1"/"Local State" <<EOF
+if test ! -f "$1"/"Local State"; then
+	cat >"$1"/"Local State" <<EOF
 {
  "profile": { "last_used": "${profile}" },
 

@@ -1,47 +1,78 @@
-#!/bin/dash
-# Usage
-#   crypto/rate [[query] exchange-rate-currency]
-#
-# Examples
-#   crypto/rate
-#   => curl rate.cx
-#
-#   crypto/rate rub
-#   env c=rub crypto/rate
-#   => curl rub.rate.cx
-#
-#   crypto/rate n=20 rub
-#   env c=rub q=n=20 crypto/rate
-#   => curl rub.rate.cx/?n=20
-#
-#   crypto/rate T n=20 rub
-#   => curl rub.rate.cx/?T&n=20
-#
-#   env q='T&n=20' crypto/rate
-#   => curl rate.cx/?T&n=20
+#!/bin/sh -eu
 
-for arg
-do
-	if [ ! -z $c ]
-	then
-		if [ -z $q ]
-		then
-			q="$c"
-		else
-			q="$q&$c"
+while [ -n "${1+x}" ]; do
+	case "${1}" in
+	-h | -help)
+		echo "Usage"
+		echo "  crypto/rate [-c crypto] [-f fiat] [-q query]"
+		echo
+		echo "Examples"
+		echo "  crypto/rate"
+		echo "  => curl rate.sx"
+		echo
+		echo "  crypto/rate -c eth -f rub"
+		echo "  env c=eth f=rub crypto/rate"
+		echo "  => curl rub.rate.sx/eth"
+		echo
+		echo "  crypto/rate -f rub -q n=20"
+		echo "  env f=rub q=n=20 crypto/rate"
+		echo "  => curl rub.rate.sx/?n=20"
+		echo
+		echo "  crypto/rate -q T -q n=20"
+		echo "  crypto/rate -q 'T&n=20'"
+		echo "  env q='T&n=20' crypto/rate"
+		echo "  => curl rate.sx/?T&n=20"
+		echo
+		exit 0
+		;;
+	-v | -verbose)
+		set -x
+		shift
+		;;
+	-c | -crypto)
+		if [ -z "${2+x}" ]; then
+			echo "crypto/rate: expected ${1} argument" >&2
+			exit 1
 		fi
-	fi
-	c=$arg
+		c="${2}"
+		shift
+		shift
+		;;
+	-f | -fiat)
+		if [ -z "${2+x}" ]; then
+			echo "crypto/rate: expected ${1} argument" >&2
+			exit 1
+		fi
+		f="${2}"
+		shift
+		shift
+		;;
+	-q | -query)
+		if [ -z "${2+x}" ]; then
+			echo "crypto/rate: expected ${1} argument" >&2
+			exit 1
+		fi
+		if [ -n "${q+x}" ]; then
+			q="${q}&${2}"
+		else
+			q="${2}"
+		fi
+		shift
+		shift
+		;;
+	--)
+		shift
+		break
+		;;
+	-*)
+		echo "crypto/rate: unknown option ${1}" >&2
+		exit 1
+		;;
+	*)
+		shift
+		break
+		;;
+	esac
 done
 
-if [ ! -z $q ]
-then
-	q="/?$q"
-fi
-
-if [ ! -z $c ]
-then
-	c="$c."
-fi
-
-curl "$c"rate.sx"$q"
+curl "https://${f-}${f:+.}rate.sx${c:+/}${c-}${q:+?}${q-}"

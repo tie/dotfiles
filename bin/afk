@@ -1,2 +1,3 @@
-#!/bin/dash
-xsuspend && exec xlock
+#!/bin/sh -e
+xsuspend
+exec xlock

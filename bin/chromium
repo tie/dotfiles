@@ -1,50 +1,51 @@
-#!/bin/dash -e
+#!/bin/sh -eu
 program="${0##*/}"
 root=/opt/"$program"
 chrome="$XDG_RUNTIME_DIR"/"$program"
 
-if test ! -d "$chrome"
-then mkdir "$chrome"
+if test ! -d "$chrome"; then
+	mkdir "$chrome"
 fi
 
-if test ! -d "$chrome"/user
-then cp -aL "$XDG_CONFIG_HOME"/"$program" "$chrome"/user
+if test ! -d "$chrome"/user; then
+	cp -aL "$XDG_CONFIG_HOME"/"$program" "$chrome"/user
 fi
 
 # see http://crbug.com/376567
 exec </dev/null
 # proxy stdout
-if test ! -e "$chrome"/stdout
-then mkfifo "$chrome"/stdout
+if test ! -e "$chrome"/stdout; then
+	mkfifo "$chrome"/stdout
 fi
-if test -p "$chrome"/stdout
-then
+if test -p "$chrome"/stdout; then
 	cat <"$chrome"/stdout &
 	exec >"$chrome"/stdout
-else exec >/dev/null
+else
+	exec >/dev/null
 fi
 # proxy stderr
-if test ! -e "$chrome"/stderr
-then mkfifo "$chrome"/stderr
+if test ! -e "$chrome"/stderr; then
+	mkfifo "$chrome"/stderr
 fi
-if test -p "$chrome"/stderr
-then
+if test -p "$chrome"/stderr; then
 	cat <"$chrome"/stderr >&2 &
 	exec 2>"$chrome"/stderr
-else exec 2>/dev/null
+else
+	exec 2>/dev/null
 fi
 
 # always use chrome's libs
-if test -z "$LD_LIBRARY_PATH"
-then export LD_LIBRARY_PATH="$root":"$root"/lib
-else export LD_LIBRARY_PATH="$root":"$root"/lib:"$LD_LIBRARY_PATH"
+if test -z "$LD_LIBRARY_PATH"; then
+	export LD_LIBRARY_PATH="$root":"$root"/lib
+else
+	export LD_LIBRARY_PATH="$root":"$root"/lib:"$LD_LIBRARY_PATH"
 fi
 
 exec "$root"/"$program" \
-  --enable-potentially-annoying-security-features \
-  --disk-cache-dir="$chrome"/cache \
-  --user-data-dir="$chrome"/user \
-  --disable-remote-fonts \
-  --show-cert-link \
-  --disable-sync \
-  "$@"
+	--enable-potentially-annoying-security-features \
+	--disk-cache-dir="$chrome"/cache \
+	--user-data-dir="$chrome"/user \
+	--disable-remote-fonts \
+	--show-cert-link \
+	--disable-sync \
+	"$@"

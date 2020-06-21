@@ -1,8 +1,0 @@
-#!/bin/dash
-
-p="$HOME"/.local/mnt/"$1"
-d="$1"
-shift
-
-mkdir -p "$p"
-mount "$@" /dev/"$d" "$p"

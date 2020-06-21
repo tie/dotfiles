@@ -1,0 +1,24 @@
+#!/bin/sh -eu
+
+if [ -z "${disk+x}" ]; then
+	disk="$HOME/Library/Application Support/xhyve/disk.img"
+fi
+set -- \
+	-s 3:0,ahci-hd,"$disk" \
+	-s 31:0,lpc -l com1,stdio \
+	-l bootrom,"$HOME"/opt/xhyve/share/uefi-firmware/BHYVE_UEFI.fd \
+	"$@"
+
+if [ -n "${iso+x}" ]; then
+	set -- -s 2:0,ahci-cd,"$iso" "$@"
+fi
+
+set -- \
+	-A -H -P \
+	-m 4G -c 1 \
+	-s 0:0,hostbridge \
+	-s 1:0,e1000 \
+	"$@"
+
+export PATH="$HOME/opt/xhyve/bin:$PATH"
+exec xhyve "$@"

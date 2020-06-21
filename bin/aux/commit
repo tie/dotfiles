@@ -1,2 +1,2 @@
-#!/bin/dash
-exec curl -s https://whatthecommit.com/index.txt
+#!/bin/sh -eu
+exec curl -s 'https://whatthecommit.com/index.txt'

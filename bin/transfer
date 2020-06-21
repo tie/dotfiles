@@ -1,9 +1,8 @@
-#!/bin/dash
+#!/bin/sh -eu
 # transfer <filename> [curl-arguments]
-# transfer -- upload data from stdin to transfer.sh
-f="$1"
-if test $# -gt 0
-then shift
-fi
+# Uploads data from stdin to transfer.sh
 
-exec curl -# -T . https://transfer.sh/"$f" "$@"
+f="$1"
+shift
+
+curl -# -T . https://transfer.sh/"$f" "$@" | cat

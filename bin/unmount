@@ -1,4 +1,4 @@
-#!/bin/dash
-# why is 'umount' not spelled 'unmount'?
-#   https://unix.stackexchange.com/questions/9832
+#!/bin/sh -eu
+# Why is 'umount' not spelled 'unmount'?
+# https://unix.stackexchange.com/questions/9832
 exec umount "$@"

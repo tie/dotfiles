@@ -1,2 +1,2 @@
-#!/bin/dash
+#!/bin/sh -eu
 pacman -Qii | awk '/^MODIFIED/ {print $2}'
