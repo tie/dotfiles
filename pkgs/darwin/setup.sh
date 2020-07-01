@@ -13,6 +13,11 @@ if ! [ -d "$HOME"/opt/cltools ]; then
 	(. pkgs/darwin/cltools/setup.sh)
 fi
 
+if ! [ -d "$HOME"/Applications/CMake.app ]; then
+	echo "Installing CMake"
+	(. pkgs/darwin/cmake/setup.sh)
+fi
+
 if ! [ -d "$HOME"/opt/git ]; then
 	echo "Installing Git"
 	(. pkgs/darwin/git/setup.sh)
@@ -51,4 +56,9 @@ fi
 if ! [ -d "$HOME"/Applications/Skim.app ]; then
 	echo "Installing Skim"
 	(. pkgs/darwin/skim/setup.sh)
+fi
+
+if ! [ -d "$HOME"/Applications/Transmission.app ]; then
+	echo "Installing Transmission"
+	(. pkgs/darwin/transmission/setup.sh)
 fi
