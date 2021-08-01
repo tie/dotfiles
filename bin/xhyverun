@@ -15,7 +15,7 @@ fi
 
 set -- \
 	-A -H -P \
-	-m 4G -c 1 \
+	-m 8G -c 1 \
 	-s 0:0,hostbridge \
 	-s 1:0,e1000 \
 	"$@"
